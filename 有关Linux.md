@@ -4,6 +4,8 @@
 ##有关Linux内核
 ###BIOS相关
 ###启动加载器GRUB
+###编译内核
+	apt-get source linux-image-$(uname -r)		#下载当前版本内核
 ###vmlinuz可引导的、压缩的内核（vmlinux未压缩）
 	make zImage		#小内核，自带gzip解压代码，老的zImage解压缩内核到低端内存(第一个640K)
     make bzImage	#大内核，自带gzip解压代码，bzImage解压缩内核到高端内存(1M以上)
@@ -15,7 +17,10 @@
 ###内核信息
 	cat /proc/cmdline
 	cat /proc/kallsyms
+    
+    
 ###有关Linux运维
+
 
 ###有关Linux工具
 ####Ftrace(>=2.6.27，Documentation/ftrace.txt)
