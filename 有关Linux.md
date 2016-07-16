@@ -12,15 +12,16 @@
 ###initrd.img
 ###System.map内核符号表
 	cat /boot/System.map | grep do_fork		#查看do_fork地址
-###第一个程序 - Init
-###第一个程序 - systemd
+###初始化系统 - sysvinit
+###初始化系统 - systemd
 ###内核信息
 	cat /proc/cmdline
 	cat /proc/kallsyms
     
     
 ###有关Linux运维
-
+####debian/ubuntu软件包管理
+	/etc/apt/source.list		#软件源
 
 ###有关Linux工具
 ####Ftrace(>=2.6.27，Documentation/ftrace.txt)
