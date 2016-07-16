@@ -1,6 +1,7 @@
 #有关Linux
 *-----Linux学习笔记*
-	
+
+
 ##有关Linux内核
 ###BIOS相关
 ###启动加载器GRUB
@@ -17,11 +18,17 @@
 ###内核信息
 	cat /proc/cmdline
 	cat /proc/kallsyms
-    
-    
+
+
 ###有关Linux运维
 ####debian/ubuntu软件包管理
 	/etc/apt/source.list		#软件源
+
+####键盘布局
+	loadkeys "keymap_name"		#键盘布局，ubuntu：/usr/share/ibus/keymaps
+
+####硬盘分区
+
 
 ###有关Linux工具
 ####Ftrace(>=2.6.27，Documentation/ftrace.txt)
@@ -30,6 +37,6 @@
     $cat available_tracers				#该内核支持的trace类
     $sudo apt-get install trace-cmd		#Ftrace前端命令工具
     $sudo apt-get install kernelshark	#Ftrace可视化前端工具
-    
+
 ###资料
-- [SysVinit (简体中文)] (https://wiki.archlinux.org/index.php/SysVinit_\(简体中文\))
+- [SysVinit (简体中文)] (https://wiki.archlinux.org/index.php/SysVinit_\(简体中文))
