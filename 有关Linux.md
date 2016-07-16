@@ -30,3 +30,6 @@
     $cat available_tracers				#该内核支持的trace类
     $sudo apt-get install trace-cmd		#Ftrace前端命令工具
     $sudo apt-get install kernelshark	#Ftrace可视化前端工具
+    
+###资料
+   [SysVinit (简体中文)] （!https://wiki.archlinux.org/index.php/SysVinit_(简体中文)）
