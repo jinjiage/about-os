@@ -3,7 +3,10 @@
 
 
 ##有关Linux内核
-###BIOS相关
+###引导
+- BIOS
+- 加载内核
+
 ###启动加载器GRUB
 ###编译内核
 	apt-get source linux-image-$(uname -r)		#下载当前版本内核
@@ -40,3 +43,4 @@
 
 ###资料
 - [SysVinit (简体中文)] (https://wiki.archlinux.org/index.php/SysVinit_\(简体中文\))
+- UNIX Linux系统管理技术手册（第4版）
