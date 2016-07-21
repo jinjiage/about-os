@@ -44,6 +44,13 @@
     kill pid		#例如发送KILL无条件终止信号，kill -9 pid or kill -s KILL pid
     killall pidname	#通杀所有进程，支持通配符
 
+####环境变量
+	set		#显示所有有值变量，包括局部环境变量和全局环境变量
+    unset var		#删除环境变量
+    var=value		#设置局部环境变量，通常用小写字母，用于区分全局变量
+    echo $var		#显示变量的值
+    export var		#导到全局环境中，这样所有shell进程中都可见
+
 ####debian/ubuntu软件包管理
 	/etc/apt/source.list		#软件源
 
@@ -64,3 +71,4 @@
 ###资料
 - [SysVinit (简体中文)] (https://wiki.archlinux.org/index.php/SysVinit_\(简体中文\))
 - UNIX Linux系统管理技术手册（第4版）
+- Linux命令行与Shell脚本编程大全
