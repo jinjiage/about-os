@@ -24,7 +24,7 @@
 
 
 ###有关Linux运维
-####shell编程
+####简单shell命令
     sh -n xxx.sh       	#检查语法
 	sh -vx xxx.sh		#运行跟踪
 	touch file			#创建文件
@@ -37,6 +37,12 @@
     cat file		#查看文件内容，-b显示行号，-T不显示制表符
     head/tail file		#查看部分文件内容
     more/less		#分屏显示
+
+####进程管理
+	ps		#显示进程信息，最复杂的命令之一，支持三种风格选项，Unix、BSD、GNU
+	top		#实时显示进程信息
+    kill pid		#例如发送KILL无条件终止信号，kill -9 pid or kill -s KILL pid
+    killall pidname	#通杀所有进程，支持通配符
 
 ####debian/ubuntu软件包管理
 	/etc/apt/source.list		#软件源
