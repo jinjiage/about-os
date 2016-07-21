@@ -24,6 +24,20 @@
 
 
 ###有关Linux运维
+####shell编程
+    sh -n xxx.sh       	#检查语法
+	sh -vx xxx.sh		#运行跟踪
+	touch file			#创建文件
+	cp file1 file2				#拷贝文件，有些比较强大的选项，例如-R递归拷贝，-P保留原有时间
+    mv name1 name2		#修改名字
+    rm 	 file/dir		#删除文件或目录，-rf递归强制删除
+	mkdir dir		#创建目录，rmdir dir可以删除空目录
+    stat file		#查看文件统计信息
+    file name		#查看文件类型，类型分为：文本文件、可执行文件、数据文件
+    cat file		#查看文件内容，-b显示行号，-T不显示制表符
+    head/tail file		#查看部分文件内容
+    more/less		#分屏显示
+
 ####debian/ubuntu软件包管理
 	/etc/apt/source.list		#软件源
 
