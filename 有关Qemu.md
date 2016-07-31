@@ -10,6 +10,7 @@
 			|
 			|qemu_init_cpu_loop
 				|qemu_init_sigbus,初始化qemu自身的信号
+
 				|qemu_cond_init，初始化4个条件变量（qemu_cpu_cond、qemu_pause_cond、qemu_work_cond、qemu_io_proceeded_cond），用于控制qemu自身状态
 				|qemu_mutex_init，初始化一个互斥量（qemu_global_mutex）
 				|qemu_thread_get_self，设置一个线程函数（io_thread）
@@ -35,6 +36,20 @@
 				|xen分支：case QEMU_OPTION_xen_domid
 					
 			 }
+
+
+###TCG模拟方式
+	qemu_tcg_cpu_thread_fn，线程
+		|while(1)
+			|tcg_exec_all
+				|tcg_cpu_exec
+					|cpu_exec
+						|for(;;)
+							|tb_find_fast
+								|tb_find_slow
+							|cpu_loop_exec_tb
+								|cpu_tb_exec
+								|cpu_exec_nocache
 
 ###pc_machine_info例子
 
