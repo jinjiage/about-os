@@ -1,7 +1,11 @@
 # 有关Qemu #
 
-
-## qemu初始化
+##qemu系统仿真，仿真同构与非同构处理器及其他外部设备，运行完整的操作系统
+	#配置阶段
+	x86_cpu_common_class_init，★设置与x86 cpu相关的一系列函数，
+		|dc->realize -> x86_cpu_realizefn，★初始化cpu
+							|qemu_init_vcpu，☆
+	#初始化阶段
 	global：init_type_list数组，共4个元素MODULE_INIT_BLOCK、MODULE_INIT_OPTS、MODULE_INIT_QAPI、MODULE_INIT_QOM，每个元素代表不同类型对象或模块，每个元素挂接一个队列，队列中存放不同具体模块（qemu是一个oop，任何东西都是模块，包括非设备、选项、块设备、...）的初始化函数
 	
 	.init:通过4个宏block_init、opts_init、qapi_init、type_init把模块初始化函数注册到init_type_list数组中，等待后续调用。
@@ -36,16 +40,8 @@
 				|xen分支：case QEMU_OPTION_xen_domid
 					
 			 }
-
-
-###TCG模拟方式
-	#TCG配置阶段
-	x86_cpu_common_class_init，★设置与x86 cpu相关的一系列函数，
-		|dc->realize -> x86_cpu_realizefn，★初始化cpu
-							|qemu_init_vcpu，☆
-	#TCG初始化阶段
 		
-	#TCG执行阶段
+	#执行阶段
 	qemu_tcg_cpu_thread_fn，线程
 		|while(1)
 			|tcg_exec_all
@@ -55,13 +51,22 @@
 						|tcg_current_cpu，设置全局
 						|cc->cpu_exec_enter，调用多态函数，实际调用跟体系结构相关的函数，如果是x86，调用的是x86_cpu_exec_enter函数
 						|for(;;)
-							|tb_find_fast
-								|tb_find_slow
-									|tb_gen_code
-							|cpu_loop_exec_tb
+							|tb_find_fast，查找指令
+								|tb_find_slow，指令不在TB中，执行此处
+									|translate-all.c:tb_gen_code，☆翻译指令
+										|target-xxx\translate.c:gen_intermediate_code，★Guest Code -> TCG IR
+										|tcg_gen_code，☆TCG IR -> Host Code
+							|cpu_loop_exec_tb，执行指令
 								|cpu_tb_exec
 								|cpu_exec_nocache
 									|tb_gen_code
+
+
+##qemu用户级仿真，能够运行那些为不同处理器编译的Linux程序
+
+##KVM半虚拟化
+
+##XEN半虚拟化
 
 ###pc_machine_info例子
 
