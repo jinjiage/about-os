@@ -1,5 +1,7 @@
 # 有关Qemu #
 
+##qemu用户级仿真，能够运行那些为不同处理器编译的Linux程序
+
 ##qemu系统仿真，仿真同构与非同构处理器及其他外部设备，运行完整的操作系统
 	#配置阶段
 	x86_cpu_common_class_init，★设置与x86 cpu相关的一系列函数，
@@ -61,8 +63,6 @@
 								|cpu_exec_nocache
 									|tb_gen_code
 
-
-##qemu用户级仿真，能够运行那些为不同处理器编译的Linux程序
 
 ##KVM半虚拟化
 
