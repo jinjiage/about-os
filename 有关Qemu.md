@@ -2,11 +2,14 @@
 
 ##qemu用户级仿真，能够运行那些为不同处理器编译的Linux程序
 
-##qemu系统仿真，仿真同构与非同构处理器及其他外部设备，运行完整的操作系统
+##qemu系统级仿真，仿真同构与非同构处理器及其他外部设备，运行完整的操作系统
 	#配置阶段
 	x86_cpu_common_class_init，★设置与x86 cpu相关的一系列函数，
 		|dc->realize -> x86_cpu_realizefn，★初始化cpu
 							|qemu_init_vcpu，☆
+								|kvm_enabled,
+								|tcg_enabled,
+						
 	#初始化阶段
 	global：init_type_list数组，共4个元素MODULE_INIT_BLOCK、MODULE_INIT_OPTS、MODULE_INIT_QAPI、MODULE_INIT_QOM，每个元素代表不同类型对象或模块，每个元素挂接一个队列，队列中存放不同具体模块（qemu是一个oop，任何东西都是模块，包括非设备、选项、块设备、...）的初始化函数
 	
@@ -47,7 +50,7 @@
 	qemu_tcg_cpu_thread_fn，线程
 		|while(1)
 			|tcg_exec_all
-				|tcg_cpu_exec，★
+				|tcg_cpu_exec
 					|cpu_exec，☆
 						|CPU_GET_CLASS宏，获取cpu类型
 						|tcg_current_cpu，设置全局
@@ -65,8 +68,17 @@
 
 
 ##KVM半虚拟化
+	#配置阶段
+	kvm-all.c:kvm_accel_class_init，☆
+		|ac->init_machine = kvm_init，
+			|target-xxx\kvm.c:kvm_arch_init，★
+
+	#执行阶段
+	qemu_kvm_cpu_thread_fn，线程
 
 ##XEN半虚拟化
+	#执行阶段
+	qemu_kvm_cpu_thread_fn，线程
 
 ###pc_machine_info例子
 
