@@ -39,17 +39,29 @@
 
 
 ###TCG模拟方式
+	#TCG配置阶段
+	x86_cpu_common_class_init，★设置与x86 cpu相关的一系列函数，
+		|dc->realize -> x86_cpu_realizefn，★初始化cpu
+							|qemu_init_vcpu，☆
+	#TCG初始化阶段
+		
+	#TCG执行阶段
 	qemu_tcg_cpu_thread_fn，线程
 		|while(1)
 			|tcg_exec_all
-				|tcg_cpu_exec
-					|cpu_exec
+				|tcg_cpu_exec，★
+					|cpu_exec，☆
+						|CPU_GET_CLASS宏，获取cpu类型
+						|tcg_current_cpu，设置全局
+						|cc->cpu_exec_enter，调用多态函数，实际调用跟体系结构相关的函数，如果是x86，调用的是x86_cpu_exec_enter函数
 						|for(;;)
 							|tb_find_fast
 								|tb_find_slow
+									|tb_gen_code
 							|cpu_loop_exec_tb
 								|cpu_tb_exec
 								|cpu_exec_nocache
+									|tb_gen_code
 
 ###pc_machine_info例子
 
