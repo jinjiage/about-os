@@ -5,10 +5,12 @@
 ##有关Linux内核
 ###引导
 
-###加载器GRUB
-####GRUB 2
+###第一个程序 - bootloader
+####GRUB Legacy
 #####核心镜像core.img、配置grub.cfg及配套工具
-![grub2](../doc/grub2.PNG)
+![grub0.97](../doc/grub0.97.PNG)
+
+![grub0.97-2](../doc/grub0.97-2.PNG)
 
 ###编译内核
 	apt-get source linux-image-$(uname -r)		#下载当前版本内核
