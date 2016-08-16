@@ -4,10 +4,11 @@
 
 ##有关Linux内核
 ###引导
-- BIOS
-- 加载内核
 
-###启动加载器GRUB
+###加载器GRUB
+####GRUB 2
+![grub2](..\doc\grub2.PNG)
+
 ###编译内核
 	apt-get source linux-image-$(uname -r)		#下载当前版本内核
 ###vmlinuz可引导的、压缩的内核（vmlinux未压缩）
