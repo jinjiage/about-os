@@ -19,7 +19,6 @@
 			|
 			|qemu_init_cpu_loop
 				|qemu_init_sigbus,初始化qemu自身的信号
-
 				|qemu_cond_init，初始化4个条件变量（qemu_cpu_cond、qemu_pause_cond、qemu_work_cond、qemu_io_proceeded_cond），用于控制qemu自身状态
 				|qemu_mutex_init，初始化一个互斥量（qemu_global_mutex）
 				|qemu_thread_get_self，设置一个线程函数（io_thread）
@@ -32,7 +31,8 @@
 
 			|module_call_init(MODULE_INIT_OPTS)，选项对象初始化
 
-			|bdrv_init_with_whitelist，调用块设备对象初始化
+			|bdrv_init_with_whitelist
+				|module_call_init(MODULE_INIT_BLOCK),调用块设备对象初始化
 
 			|if defconfig=true，从userconfig加载默认参数到vm_config_groups中
 			
@@ -45,6 +45,21 @@
 				|xen分支：case QEMU_OPTION_xen_domid
 					
 			 }
+
+			|cpu_exec_init_all
+				|io_mem_init，初始化IO端口
+				
+				|memory_map_init，初始化整个系统总线线性地址空间和io地址空间
+					|申请并初始化了一块名为“system”的MemoryRegion，放到全局变量address_space_memory（代表线性地址空间）中
+					|申请并初始化了一块名为“io”的MemoryRegion，address_space_io（代表io地址空间）中
+
+			|socket_init，初始化qemu通信socket
+
+			|machine_class->init(current_machine);
+
+			|machine_usb，初始化usb设备
+
+			|qemu_run_machine_init_done_notifiers
 		
 	#执行阶段
 	qemu_tcg_cpu_thread_fn，线程
@@ -84,4 +99,6 @@
 
 	pc_machine_initfn
 		DEFINE_I440FX_MACHINE
-			pc_init1
+			|pc_init1
+				|pc_memory_init，申请一块"pc.ram"的MemoryRegion，加载bios
+				|pc_cmos_init，初始化cmos
