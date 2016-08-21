@@ -81,6 +81,19 @@
 								|cpu_exec_nocache
 									|tb_gen_code
 
+	#CPU仿真
+
+	#内存仿真
+	GPA：guest physical address
+	HVA：host virtual address
+	
+			0			  		 		4G							64G
+	system	|------|------|------|------|------|------|------|------|
+			[    pc.ram   ]
+			[         ram-below-4g     ][         ram-above-4g      ]        
+
+	#设备仿真
+
 
 ##KVM半虚拟化
 	#配置阶段
@@ -102,3 +115,26 @@
 			|pc_init1
 				|pc_memory_init，申请一块"pc.ram"的MemoryRegion，加载bios
 				|pc_cmos_init，初始化cmos
+
+##典型设备
+*###PS/2键盘和鼠标
+PS/2协议支持两种设备，一种是键盘，一种是鼠标，它是由IBM公司制定的。根据PS/2协议，鼠标是由键盘的控制器(i8042)进行控制的，键盘控制器（i8042）总共有两个通道，一个通道由键盘使用，另一个通道由鼠标使用，我们对鼠标进行操作也是通过i8042芯片来完成的。i8042支持两种工作模式——AT模式及PS/2模式，与i8042有关的I/O端口共有两个，一个是0x60端口，一个是0x64端口*
+
+	#初始化阶段
+	i8042_realizefn
+		|注册IRQ，键盘IRQ1和鼠标IRQ12
+		|注册IO端口，0x60和0x64
+###VGA
+###硬盘
+###USB
+###网卡
+
+##图形用户接口（Graphical User Interface）
+###Curses（Linux平台）
+###COOCA（OSX平台）
+###SDL（跨平台）
+*SDL是一个跨平台的多媒体库，它通过OpenGL和2D视频帧缓冲，提供了针对音频、视频、键盘、鼠标、控制杆及3D硬件的低级别的访问接口。*
+###GTK（Linux平台）
+###VNC（远程显示）
+	#初始化阶段，参见“系统级仿真”初始化，需求定义CONFIG_VNC和参数“vnc”
+	vnc_init_func
