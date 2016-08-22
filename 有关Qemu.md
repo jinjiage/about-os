@@ -78,6 +78,7 @@ PS/2协议支持两种设备，一种是键盘，一种是鼠标，它是由IBM�
 		
 
 3. 执行阶段
+
 		qemu_tcg_cpu_thread_fn，线程
 			|while(1)
 				|tcg_exec_all
@@ -102,38 +103,42 @@ PS/2协议支持两种设备，一种是键盘，一种是鼠标，它是由IBM�
 - CPU仿真
 
 - 内存仿真
-	GPA：guest physical address
-	HVA：host virtual address
-	
-			0			  		 		4G							64G
-	system	|------|------|------|------|------|------|------|------|
-			[    pc.ram   ]
-			[         ram-below-4g     ][         ram-above-4g      ]        
+
+		GPA：guest physical address
+		HVA：host virtual address
+		
+				0			  		 		4G							64G
+		system	|------|------|------|------|------|------|------|------|
+				[    pc.ram   ]
+				[         ram-below-4g     ][         ram-above-4g      ]        
 
 - PCI总线仿真
-	#初始化阶段
-	pc_machine_initfn
-		DEFINE_I440FX_MACHINE
-			|pc_init1
-				|pc_memory_init，申请一块"pc.ram"的MemoryRegion，加载bios
-				|pc_cmos_init，初始化cmos
+
+		#初始化阶段
+		pc_machine_initfn
+			DEFINE_I440FX_MACHINE
+				|pc_init1
+					|pc_memory_init，申请一块"pc.ram"的MemoryRegion，加载bios
+					|pc_cmos_init，初始化cmos
 
 - 鼠标键盘仿真
-	#初始化阶段
-	i8042_realizefn
-		|注册IRQ，键盘IRQ1和鼠标IRQ12
-		|注册IO端口，0x60和0x64
+
+		#初始化阶段
+		i8042_realizefn
+			|注册IRQ，键盘IRQ1和鼠标IRQ12
+			|注册IO端口，0x60和0x64
 
 - VGA仿真和图形用户接口（Graphical User Interface）
-	> Curses（Linux平台）
-	> COOCA（OSX平台）
-	> SDL（跨平台）
-	  SDL是一个跨平台的多媒体库，它通过OpenGL和2D视频帧缓冲，提供了针对音频、视频、键盘、鼠标、控制杆及3D硬件的低级别的访问接口。*
 
-	> GTK（Linux平台）
-	> VNC（远程显示）
-		#初始化阶段，参见“系统级仿真”初始化，需求定义CONFIG_VNC和参数“vnc”
-		vnc_init_func
+		> Curses（Linux平台）
+		> COOCA（OSX平台）
+		> SDL（跨平台）
+		  SDL是一个跨平台的多媒体库，它通过OpenGL和2D视频帧缓冲，提供了针对音频、视频、键盘、鼠标、控制杆及3D硬件的低级别的访问接口。*
+	
+		> GTK（Linux平台）
+		> VNC（远程显示）
+			#初始化阶段，参见“系统级仿真”初始化，需求定义CONFIG_VNC和参数“vnc”
+			vnc_init_func
 
 ##KVM半虚拟化
 	#配置阶段
