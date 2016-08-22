@@ -5,22 +5,25 @@
 ##qemu系统级仿真，仿真同构与非同构处理器及其他外部设备，运行完整的操作系统 
 ###PC体系结构
    ![PC体系结构](../doc/pc.gif)
-####PS/2键盘和鼠标
-PS/2协议支持两种设备，一种是键盘，一种是鼠标，它是由IBM公司制定的。根据PS/2协议，鼠标是由键盘的控制器(i8042)进行控制的，键盘控制器（i8042）总共有两个通道，一个通道由键盘使用，另一个通道由鼠标使用，我们对鼠标进行操作也是通过i8042芯片来完成的。i8042支持两种工作模式——AT模式及PS/2模式，与i8042有关的I/O端口共有两个，一个是0x60端口，一个是0x64端口*
-####VGA
-####硬盘
-####USB
-####网卡
 
-####qemu软件仿真
-	#配置阶段
+- PS/2键盘和鼠标
+PS/2协议支持两种设备，一种是键盘，一种是鼠标，它是由IBM公司制定的。根据PS/2协议，鼠标是由键盘的控制器(i8042)进行控制的，键盘控制器（i8042）总共有两个通道，一个通道由键盘使用，另一个通道由鼠标使用，我们对鼠标进行操作也是通过i8042芯片来完成的。i8042支持两种工作模式——AT模式及PS/2模式，与i8042有关的I/O端口共有两个，一个是0x60端口，一个是0x64端口*
+
+- VGA
+- 硬盘
+- USB
+- 网卡
+
+###仿真流程
+
+1. 配置阶段
 	x86_cpu_common_class_init，★设置与x86 cpu相关的一系列函数，
 		|dc->realize -> x86_cpu_realizefn，★初始化cpu
 							|qemu_init_vcpu，☆
 								|kvm_enabled,
 								|tcg_enabled,
 						
-	#初始化阶段
+2. 初始化阶段
 	global：init_type_list数组，共4个元素MODULE_INIT_BLOCK、MODULE_INIT_OPTS、MODULE_INIT_QAPI、MODULE_INIT_QOM，每个元素代表不同类型对象或模块，每个元素挂接一个队列，队列中存放不同具体模块（qemu是一个oop，任何东西都是模块，包括非设备、选项、块设备、...）的初始化函数
 	
 	.init:通过4个宏block_init、opts_init、qapi_init、type_init把模块初始化函数注册到init_type_list数组中，等待后续调用。
@@ -71,7 +74,8 @@ PS/2协议支持两种设备，一种是键盘，一种是鼠标，它是由IBM�
 
 			|qemu_run_machine_init_done_notifiers
 		
-	#执行阶段
+
+3. 执行阶段
 	qemu_tcg_cpu_thread_fn，线程
 		|while(1)
 			|tcg_exec_all
@@ -91,9 +95,11 @@ PS/2协议支持两种设备，一种是键盘，一种是鼠标，它是由IBM�
 								|cpu_exec_nocache
 									|tb_gen_code
 
-	#CPU仿真
+###具体设备
 
-	#内存仿真
+- CPU仿真
+
+- 内存仿真
 	GPA：guest physical address
 	HVA：host virtual address
 	
@@ -102,31 +108,30 @@ PS/2协议支持两种设备，一种是键盘，一种是鼠标，它是由IBM�
 			[    pc.ram   ]
 			[         ram-below-4g     ][         ram-above-4g      ]        
 
-	#PCI总线仿真
-		#初始化阶段
-		pc_machine_initfn
-			DEFINE_I440FX_MACHINE
-				|pc_init1
-					|pc_memory_init，申请一块"pc.ram"的MemoryRegion，加载bios
-					|pc_cmos_init，初始化cmos
+- PCI总线仿真
+	#初始化阶段
+	pc_machine_initfn
+		DEFINE_I440FX_MACHINE
+			|pc_init1
+				|pc_memory_init，申请一块"pc.ram"的MemoryRegion，加载bios
+				|pc_cmos_init，初始化cmos
 
-	#设备仿真
-	1、鼠标键盘仿真
-		#初始化阶段
-		i8042_realizefn
-			|注册IRQ，键盘IRQ1和鼠标IRQ12
-			|注册IO端口，0x60和0x64
+- 鼠标键盘仿真
+	#初始化阶段
+	i8042_realizefn
+		|注册IRQ，键盘IRQ1和鼠标IRQ12
+		|注册IO端口，0x60和0x64
 
-	2、VGA仿真和图形用户接口（Graphical User Interface）
-		> Curses（Linux平台）
-		> COOCA（OSX平台）
-		> SDL（跨平台）
-		  SDL是一个跨平台的多媒体库，它通过OpenGL和2D视频帧缓冲，提供了针对音频、视频、键盘、鼠标、控制杆及3D硬件的低级别的访问接口。*
+- VGA仿真和图形用户接口（Graphical User Interface）
+	> Curses（Linux平台）
+	> COOCA（OSX平台）
+	> SDL（跨平台）
+	  SDL是一个跨平台的多媒体库，它通过OpenGL和2D视频帧缓冲，提供了针对音频、视频、键盘、鼠标、控制杆及3D硬件的低级别的访问接口。*
 
-		> GTK（Linux平台）
-		> VNC（远程显示）
-			#初始化阶段，参见“系统级仿真”初始化，需求定义CONFIG_VNC和参数“vnc”
-			vnc_init_func
+	> GTK（Linux平台）
+	> VNC（远程显示）
+		#初始化阶段，参见“系统级仿真”初始化，需求定义CONFIG_VNC和参数“vnc”
+		vnc_init_func
 
 ##KVM半虚拟化
 	#配置阶段
