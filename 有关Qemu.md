@@ -3,11 +3,16 @@
 ##qemu用户级仿真，能够运行那些为不同处理器编译的Linux程序
 
 ##qemu系统级仿真，仿真同构与非同构处理器及其他外部设备，运行完整的操作系统 
-
+###PC体系结构
    ![PC体系结构](../doc/pc.gif)
+####PS/2键盘和鼠标
+PS/2协议支持两种设备，一种是键盘，一种是鼠标，它是由IBM公司制定的。根据PS/2协议，鼠标是由键盘的控制器(i8042)进行控制的，键盘控制器（i8042）总共有两个通道，一个通道由键盘使用，另一个通道由鼠标使用，我们对鼠标进行操作也是通过i8042芯片来完成的。i8042支持两种工作模式——AT模式及PS/2模式，与i8042有关的I/O端口共有两个，一个是0x60端口，一个是0x64端口*
+####VGA
+####硬盘
+####USB
+####网卡
 
-   *pc体系结构*
-
+####qemu软件仿真
 	#配置阶段
 	x86_cpu_common_class_init，★设置与x86 cpu相关的一系列函数，
 		|dc->realize -> x86_cpu_realizefn，★初始化cpu
@@ -97,8 +102,31 @@
 			[    pc.ram   ]
 			[         ram-below-4g     ][         ram-above-4g      ]        
 
-	#设备仿真
+	#PCI总线仿真
+		#初始化阶段
+		pc_machine_initfn
+			DEFINE_I440FX_MACHINE
+				|pc_init1
+					|pc_memory_init，申请一块"pc.ram"的MemoryRegion，加载bios
+					|pc_cmos_init，初始化cmos
 
+	#设备仿真
+	1、鼠标键盘仿真
+		#初始化阶段
+		i8042_realizefn
+			|注册IRQ，键盘IRQ1和鼠标IRQ12
+			|注册IO端口，0x60和0x64
+
+	2、VGA仿真和图形用户接口（Graphical User Interface）
+		> Curses（Linux平台）
+		> COOCA（OSX平台）
+		> SDL（跨平台）
+		  SDL是一个跨平台的多媒体库，它通过OpenGL和2D视频帧缓冲，提供了针对音频、视频、键盘、鼠标、控制杆及3D硬件的低级别的访问接口。*
+
+		> GTK（Linux平台）
+		> VNC（远程显示）
+			#初始化阶段，参见“系统级仿真”初始化，需求定义CONFIG_VNC和参数“vnc”
+			vnc_init_func
 
 ##KVM半虚拟化
 	#配置阶段
@@ -112,34 +140,3 @@
 ##XEN半虚拟化
 	#执行阶段
 	qemu_kvm_cpu_thread_fn，线程
-
-###pc_machine_info例子
-
-	pc_machine_initfn
-		DEFINE_I440FX_MACHINE
-			|pc_init1
-				|pc_memory_init，申请一块"pc.ram"的MemoryRegion，加载bios
-				|pc_cmos_init，初始化cmos
-
-##典型设备
-*###PS/2键盘和鼠标
-PS/2协议支持两种设备，一种是键盘，一种是鼠标，它是由IBM公司制定的。根据PS/2协议，鼠标是由键盘的控制器(i8042)进行控制的，键盘控制器（i8042）总共有两个通道，一个通道由键盘使用，另一个通道由鼠标使用，我们对鼠标进行操作也是通过i8042芯片来完成的。i8042支持两种工作模式——AT模式及PS/2模式，与i8042有关的I/O端口共有两个，一个是0x60端口，一个是0x64端口*
-
-	#初始化阶段
-	i8042_realizefn
-		|注册IRQ，键盘IRQ1和鼠标IRQ12
-		|注册IO端口，0x60和0x64
-###VGA
-###硬盘
-###USB
-###网卡
-
-##图形用户接口（Graphical User Interface）
-###Curses（Linux平台）
-###COOCA（OSX平台）
-###SDL（跨平台）
-*SDL是一个跨平台的多媒体库，它通过OpenGL和2D视频帧缓冲，提供了针对音频、视频、键盘、鼠标、控制杆及3D硬件的低级别的访问接口。*
-###GTK（Linux平台）
-###VNC（远程显示）
-	#初始化阶段，参见“系统级仿真”初始化，需求定义CONFIG_VNC和参数“vnc”
-	vnc_init_func
