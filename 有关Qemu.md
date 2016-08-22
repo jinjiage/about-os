@@ -13,11 +13,13 @@
 
    ![PC体系结构](../doc/pc2.png)
 
-- PC体系结构内存空间
+- PC体系结构内存地址空间
 
    ![MEM MAP](../doc/mem.jpg)
 
-- PC体系结构IO空间（下图以OS角度）
+   ![MMIO MAP](../doc/mmio.PNG)
+
+- PC体系结构IO地址空间
 
    ![IO MAP](../doc/IO.PNG)
 
