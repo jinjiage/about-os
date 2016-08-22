@@ -13,9 +13,13 @@
 
    ![PC体系结构](../doc/pc2.png)
 
-- PC体系结构内存映射
+- PC体系结构内存空间
 
    ![MEM MAP](../doc/mem.jpg)
+
+- PC体系结构IO空间（下图以OS角度）
+
+   ![IO MAP](../doc/IO.PNG)
 
 - PS/2键盘和鼠标
 
