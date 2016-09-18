@@ -22,6 +22,9 @@
 - PC体系结构IO地址空间
 
    ![IO MAP](../doc/IO.PNG)
+   vm环境
+   ![IO MAP](../doc/IO_REL.png)
+   真实环境
 
 - PS/2键盘和鼠标
 
