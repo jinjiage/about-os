@@ -13,18 +13,35 @@
 
    ![PC体系结构](../doc/pc2.png)
 
+- CPU仿真
+
+- 内存仿真
+
 - PC体系结构内存地址空间
 
    ![MEM MAP](../doc/mem.jpg)
 
    ![MMIO MAP](../doc/mmio.PNG)
 
-- PC体系结构IO地址空间
+- PC体系结构IO地址空间(64KB)
 
    ![IO MAP](../doc/IO.PNG)
    vm环境
    ![IO MAP](../doc/IO_REL.png)
    真实环境
+
+端口方位|硬件|文件
+------------- | ------------- | ------------- |
+0x40  -- 0x47 |可编程间隔定时器PIT芯片(8253/8254芯片)||
+0x170 -- 0x177|IDE硬盘控制器1||
+0x1F0 -- 0x1F7|IDE硬盘控制器0||
+0x3F0 -- 0x3F7|软盘控制器||
+APM|||
+ACPI|APM_CNT_IOPORT（0xb2）,0xb100,0xafe0,0xae00,0xae08|(hw/acpi_piix4.c)
+
+- Softmmu
+
+- IRQ中断仿真
 
 - PS/2键盘和鼠标
 
@@ -151,15 +168,16 @@
 
 - VGA仿真和图形用户接口（Graphical User Interface）
 
-		> Curses（Linux平台）
-		> COOCA（OSX平台）
-		> SDL（跨平台）
+		> Curses（Linux平台，local ui）
+		> COOCA（OSX平台，local ui）
+		> SDL（跨平台，local ui）
 		  SDL是一个跨平台的多媒体库，它通过OpenGL和2D视频帧缓冲，提供了针对音频、视频、键盘、鼠标、控制杆及3D硬件的低级别的访问接口。*
 	
-		> GTK（Linux平台）
-		> VNC（远程显示）
+		> GTK（Linux平台，local ui）
+		> VNC（remote ui）
 			#初始化阶段，参见“系统级仿真”初始化，需求定义CONFIG_VNC和参数“vnc”
 			vnc_init_func
+        > SPICE（remote ui）
 
 ##KVM半虚拟化
 	#配置阶段
@@ -173,3 +191,19 @@
 ##XEN半虚拟化
 	#执行阶段
 	qemu_kvm_cpu_thread_fn，线程
+
+##其他
+###命令行选项,参见qemu-options.hx
+-m
+-machine accel=
+-device \?
+###QMP监控，参见qapi-schema.json和qmp目录下python脚本
+*JSON RPC-like API for managing QEMU:*
+
+- Hotplug devices
+- Stop/continue guest
+- Query device information
+
+###HMP监控，参见hmp-commands.hx
+*Text-based interface for managing QEMU*
+
