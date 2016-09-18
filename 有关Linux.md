@@ -21,11 +21,16 @@
 ###System.map内核符号表
 	cat /boot/System.map | grep do_fork		#查看do_fork地址
 ###初始化系统 - sysvinit
+- service
+
+        service 服务名 start/stop/status... #/etc/init.d/服务文件脚本（服务名）
+
+- chkconfig
+
 ###初始化系统 - systemd
 ###内核信息
 	cat /proc/cmdline
 	cat /proc/kallsyms
-
 
 ###有关Linux运维
 ####简单shell命令
@@ -56,13 +61,31 @@
     export var		#导到全局环境中，这样所有shell进程中都可见
 
 ####debian/ubuntu软件包管理
+![debian软件分发等级制度](./doc/debian软件分发等级制度.PNG)
+
 	/etc/apt/source.list		#软件源
+
+####redhat/suse软件包管理
+- rpm -qa #列出所有安装包
 
 ####键盘布局
 	loadkeys "keymap_name"		#键盘布局，ubuntu：/usr/share/ibus/keymaps
 
 ####硬盘分区
 
+####定制及优化
+    xset dpms force off #系统>设置->键盘->快捷键alt+c
+    gnome-terminal      #系统>设置->键盘->快捷键alt+r
+    对选区截图           #系统>设置->键盘->快捷键alt+print
+    最大化窗口
+    
+####服务器及服务
+
+
+- ssh
+
+
+- vnc
 
 ###有关Linux工具
 ####Ftrace(>=2.6.27，Documentation/ftrace.txt)
