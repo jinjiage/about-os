@@ -22,8 +22,8 @@
    ![MEM MAP](../doc/mem.jpg)
 
    ![MMIO MAP](../doc/mmio.PNG) VM环境
-   
-   ![IO MAP](../doc/iomem_REL.png) 真实机器
+
+   ![MMIO MAP](../doc/iomem_REL.png) 真实机器
 
 - PC体系结构IO地址空间(64KB)
 
