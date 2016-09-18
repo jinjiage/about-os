@@ -33,7 +33,7 @@
 	cat /proc/kallsyms
 
 ###有关Linux运维
-####简单shell命令
+####shell内置命令
     sh -n xxx.sh       	#检查语法
 	sh -vx xxx.sh		#运行跟踪
 	touch file			#创建文件
@@ -47,13 +47,11 @@
     head/tail file		#查看部分文件内容
     more/less		#分屏显示
 
-####进程管理
 	ps		#显示进程信息，最复杂的命令之一，支持三种风格选项，Unix、BSD、GNU
 	top		#实时显示进程信息
     kill pid		#例如发送KILL无条件终止信号，kill -9 pid or kill -s KILL pid
     killall pidname	#通杀所有进程，支持通配符
 
-####环境变量
 	printenv	#打印所有全局环境变量
 	set		#显示特定进程所有变量，包括局部环境变量和全局环境变量
     unset var		#删除环境变量
@@ -76,13 +74,13 @@
 
 ####网络配置，参见“http://wiki.ubuntu.org.cn/UbuntuManual:网络设置”
 
-####定制及优化
+####个性化定制
     xset dpms force off #系统>设置->键盘->快捷键alt+c
     gnome-terminal      #系统>设置->键盘->快捷键alt+r
     对选区截图           #系统>设置->键盘->快捷键alt+print
     最大化窗口
     
-####服务器及服务
+####服务器安装及配置
 
 
 - ssh
