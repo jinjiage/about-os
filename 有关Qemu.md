@@ -21,15 +21,15 @@
 
    ![MEM MAP](../doc/mem.jpg)
 
-   ![MMIO MAP](../doc/mmio.PNG)
+   ![MMIO MAP](../doc/mmio.PNG) VM环境
+   
+   ![IO MAP](../doc/iomem_REL.png) 真实机器
 
 - PC体系结构IO地址空间(64KB)
 
-   ![IO MAP](../doc/IO.PNG)
-   vm环境
+   ![IO MAP](../doc/IO.PNG) VM环境
 
-   ![IO MAP](../doc/IO_REL.png)
-   真实环境
+   ![IO MAP](../doc/IO_REL.png) 真实机器
 
 端口方位|硬件|文件
 ------------- | ------------- | ------------- |
