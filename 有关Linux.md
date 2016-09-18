@@ -74,6 +74,8 @@
 
 ####硬盘分区
 
+####网络配置，参见“http://wiki.ubuntu.org.cn/UbuntuManual:网络设置”
+
 ####定制及优化
     xset dpms force off #系统>设置->键盘->快捷键alt+c
     gnome-terminal      #系统>设置->键盘->快捷键alt+r
