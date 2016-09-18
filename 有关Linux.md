@@ -61,7 +61,7 @@
     export var		#导到全局环境中，这样所有shell进程中都可见
 
 ####debian/ubuntu软件包管理
-![debian软件分发等级制度](./doc/debian软件分发等级制度.png)
+![debian软件分发等级制度](doc/debian软件分发等级制度.png)
 
 	/etc/apt/source.list		#软件源
 
