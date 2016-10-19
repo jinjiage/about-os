@@ -32,6 +32,14 @@
 	cat /proc/cmdline
 	cat /proc/kallsyms
 
+###有关进程管理及调度
+
+###有关FileSystem文件系统
+
+###有关TCP/IP协议栈
+
+###有关设备管理
+
 ###有关Linux运维
 ####shell内置命令
     sh -n xxx.sh       	#检查语法
