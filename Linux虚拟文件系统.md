@@ -1,22 +1,37 @@
-# Linux虚拟文件系统 #
+# Linux文件系统 #
+	--------------------------------
+		      系统调用层
+	--------------------------------
+	文件      VFS虚拟文件系统
+         ---------------------------
+    系统  具体文件系统： Ext procfs sysfs sockfs 
+	--------------------------------
+		      块I/O子系统
+	--------------------------------
+	
+	linux的文件系统处于系统调用层和块I/O子系统之间，包含VFS虚拟文件系统和具体的文件系统两部分：
+    1、VFS是上层应用和具体文件系统之间的接口层，将各种具体文件系统的操作和管理内入统一的框架；
+	2、具体文件系统有procfs、sysyfs、sockfs、Ext2/3/4,不同文件系统有各自的应用场景，以模块的形式向VFS注册回调函数；
 
-## 命令 ##
-- df -lhaT
-- mount
-- umount
+## 系统调用层 ##
+linux提供了open、read、write、mount等常见的文件系统相关的调用接口,还有一些专用的系统调用，例如sockfs文件系统的socket、bind
 
-## 核心数据结构 ##
-- struct mount {
-- struct vfsmount {
-- struct super_block {
-- struct dentry｛
-- struct inode { 
-- struct files_struct {
-- struct fs_struct {
-- struct path {
-- struct file_system_type {
-- struct file_operations {
-- static struct file_system_type *file_systems
+##文件系统 ##
+- 概念
+	- filesystem type
+	- super block
+	- inode
+	- dentry
+	- vfsmount
+
+
+### VFS虚拟文件系统 ###
+file_systems（定义在fs/filesystems.c）指向文件系统类型的指针
+
+### 具体文件系统 ###
+### proc ####
+### sysfs ###
+### sockfs ###
 
 ## 核心函数 ##
 - vfs\_caches\_init初始化缓存
