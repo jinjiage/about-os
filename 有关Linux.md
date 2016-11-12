@@ -2,7 +2,7 @@
 *-----Linux学习笔记*
 
 ##有关Linux内核
-![grub0.97](../doc/linux-kernel-map.jpg)
+![linux-kernel-map](doc/linux-kernel-map.jpg)
 ###引导
 
 ###第一个程序 - bootloader
