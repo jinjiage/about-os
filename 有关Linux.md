@@ -43,6 +43,8 @@
 
 ## 6. 有关设备管理 [Go](./Linux设备管理.md)
 
+## 7. 有关虚拟化 [Go](./Linux虚拟化.md)
+
 ##二、有关Linux运维
 ###shell内置命令
     sh -n xxx.sh       	#检查语法
