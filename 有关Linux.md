@@ -32,9 +32,11 @@
 	cat /proc/cmdline
 	cat /proc/kallsyms
 
+###有关内存管理 [Go](./Linux虚拟内存系统.md)
+
 ###有关进程管理及调度
 
-###有关FileSystem文件系统
+###有关FileSystem文件系统 [Go](./Linux虚拟文件系统.md)
 
 ###有关TCP/IP协议栈
 
@@ -89,11 +91,7 @@
     最大化窗口
     
 ####服务器安装及配置
-
-
 - ssh
-
-
 - vnc
 
 ###有关Linux工具
