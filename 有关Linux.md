@@ -1,9 +1,10 @@
 #有关Linux
 *-----Linux学习笔记*
 
-##有关Linux内核
+##一、有关Linux内核
 ![linux-kernel-map](doc/linux-kernel-map.jpg)
-###引导
+
+## 1. 引导
 
 ###第一个程序 - bootloader
 ####GRUB Legacy
@@ -32,18 +33,18 @@
 	cat /proc/cmdline
 	cat /proc/kallsyms
 
-###有关内存管理 [Go](./Linux虚拟内存系统.md)
+## 2. 有关内存管理 [Go](./Linux虚拟内存系统.md)
 
-###有关进程管理及调度
+## 3. 有关进程管理及调度
 
-###有关FileSystem文件系统 [Go](./Linux虚拟文件系统.md)
+## 4. 有关FileSystem文件系统 [Go](./Linux虚拟文件系统.md)
 
-###有关TCP/IP协议栈
+## 5. 有关网络管理
 
-###有关设备管理
+## 6. 有关设备管理
 
-###有关Linux运维
-####shell内置命令
+##二、有关Linux运维
+###shell内置命令
     sh -n xxx.sh       	#检查语法
 	sh -vx xxx.sh		#运行跟踪
 	touch file			#创建文件
@@ -69,40 +70,40 @@
     echo $var		#显示变量的值
     export var		#导到全局环境中，这样所有shell进程中都可见
 
-####debian/ubuntu软件包管理
+###debian/ubuntu软件包管理
 ![debian软件分发等级制度](doc/debian软件分发等级制度.png)
 
 	/etc/apt/source.list		#软件源
 
-####redhat/suse软件包管理
+###redhat/suse软件包管理
 - rpm -qa #列出所有安装包
 
-####键盘布局
+###键盘布局
 	loadkeys "keymap_name"		#键盘布局，ubuntu：/usr/share/ibus/keymaps
 
-####硬盘分区
+###硬盘分区
 
-####网络配置，参见“http://wiki.ubuntu.org.cn/UbuntuManual:网络设置”
+###网络配置，参见“http://wiki.ubuntu.org.cn/UbuntuManual:网络设置”
 
-####个性化定制
+###个性化定制
     xset dpms force off #系统>设置->键盘->快捷键alt+c
     gnome-terminal      #系统>设置->键盘->快捷键alt+r
     对选区截图           #系统>设置->键盘->快捷键alt+print
     最大化窗口
     
-####服务器安装及配置
+###服务器安装及配置
 - ssh
 - vnc
 
-###有关Linux工具
-####Ftrace(>=2.6.27，Documentation/ftrace.txt)
+##有关Linux工具
+###Ftrace(>=2.6.27，Documentation/ftrace.txt)
 	$sudo su							#切换到root
     $cd /sys/kernel/debug/tracing		#存在，表明支持Ftrace
     $cat available_tracers				#该内核支持的trace类
     $sudo apt-get install trace-cmd		#Ftrace前端命令工具
     $sudo apt-get install kernelshark	#Ftrace可视化前端工具
 
-###资料
+##资料
 - [SysVinit (简体中文)] (https://wiki.archlinux.org/index.php/SysVinit_\(简体中文\))
 - UNIX Linux系统管理技术手册（第4版）
 - Linux命令行与Shell脚本编程大全
