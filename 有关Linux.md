@@ -37,7 +37,7 @@
 
 ## 3. 有关进程管理 [Go](./Linux进程管理.md)
 
-## 4. 有关FileSystem文件系统 [Go](./Linux虚拟文件系统.md)
+## 4. 有关文件系统 [Go](./Linux虚拟文件系统.md)
 
 ## 5. 有关网络管理 [Go](./Linux网络管理.md)
 
