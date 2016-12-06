@@ -1,51 +1,17 @@
-#有关Linux
+# 有关Linux
 *-----Linux学习笔记*
 
-##一、有关Linux内核
+## 一、有关Linux内核
+
 ![linux-kernel-map](doc/linux-kernel-map.jpg)
 
-## 1. 引导
+---
 
-###第一个程序 - bootloader
-####GRUB Legacy
-#####核心镜像core.img、配置grub.cfg及配套工具
-![grub0.97](../doc/grub0.97.PNG)
+[Linux引导过程](./Linux引导过程.md)、[Linux进程管理](./Linux进程管理.md)、[Linux内存管理](./Linux内存管理.md)、[Linux文件系统](./Linux文件系统.md)、[Linux网络管理](./Linux网络管理.md)、[Linux设备管理](./Linux设备管理.md)、[Linux虚拟化技术](./Linux虚拟化技术.md)、[Linux容器技术](./Linux容器技术.md)
 
-![grub0.97-2](../doc/grub0.97-2.PNG)
+---
 
-###编译内核
-	apt-get source linux-image-$(uname -r)		#下载当前版本内核
-###vmlinuz可引导的、压缩的内核（vmlinux未压缩）
-	make zImage		#小内核，自带gzip解压代码，老的zImage解压缩内核到低端内存(第一个640K)
-    make bzImage	#大内核，自带gzip解压代码，bzImage解压缩内核到高端内存(1M以上)
-###initrd.img
-###System.map内核符号表
-	cat /boot/System.map | grep do_fork		#查看do_fork地址
-###初始化系统 - sysvinit
-- service
-
-        service 服务名 start/stop/status... #/etc/init.d/服务文件脚本（服务名）
-
-- chkconfig
-
-###初始化系统 - systemd
-###内核信息
-	cat /proc/cmdline
-	cat /proc/kallsyms
-
-## 2. 有关内存管理 [Go](./Linux虚拟内存系统.md)
-
-## 3. 有关进程管理 [Go](./Linux进程管理.md)
-
-## 4. 有关文件系统 [Go](./Linux虚拟文件系统.md)
-
-## 5. 有关网络管理 [Go](./Linux网络管理.md)
-
-## 6. 有关设备管理 [Go](./Linux设备管理.md)
-
-## 7. 有关虚拟化 [Go](./Linux虚拟化.md)
-
-##二、有关Linux运维
+## 二、有关Linux运维
 ###shell内置命令
     sh -n xxx.sh       	#检查语法
 	sh -vx xxx.sh		#运行跟踪
@@ -75,8 +41,10 @@
 ###debian/ubuntu软件包管理
 ![debian软件分发等级制度](doc/debian软件分发等级制度.png)
 
-	/etc/apt/source.list		#软件源
-
+#### APT
+- apt-get update       #获取软件包列表，/var/state/apt/lists/
+- apt-get dist-upgrade #如软件已更新，下载
+- 
 ###redhat/suse软件包管理
 - rpm -qa #列出所有安装包
 
