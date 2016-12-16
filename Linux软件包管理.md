@@ -3,6 +3,7 @@
 ## Debian/Ubuntu APT包管理
 ### 源服务器目录结构
 
+- pool存放实际的安装包及源码
 - dists目录下包含各种ubuntu发布版本名称：
 
 		Ubuntu 4.10 – Warty Warthog （多疣的疣猪）
@@ -36,6 +37,7 @@
 - /etc/apt/sources.list，apt软件源配置文件
 
 	deb http://us.archive.ubuntu.com/ubuntu/ hardy main restricted
+
 	deb-src http://us.archive.ubuntu.com/ubuntu/ hardy main restricted
 
 - /var/lib/dpkg/available，文件的内容是软件包的描述信息
