@@ -21,7 +21,13 @@
 ## 系统调用层 ##
 linux提供了open、read、write、mount等常见的文件系统相关的调用接口,还有一些专用的系统调用，例如sockfs文件系统的socket、bind
 
-##文件系统 ##
+- mount命令
+	- 通过系统调用层COMPAT_SYSCALL_DEFINE5(mount和SYSCALL_DEFINE5(mount
+		- do_mount
+			- do\_new\_mount
+				- vfs\_kern_mount,通过file\_system_type和文件系统名称返回vfsmount挂载点
+
+## VFS虚拟文件系统 ##
 - 概念
 	- filesystem type
 	- super block
@@ -29,34 +35,24 @@ linux提供了open、read、write、mount等常见的文件系统相关的调用
 	- dentry
 	- vfsmount
 
-### VFS虚拟文件系统 ###
-
-### 代表性的具体文件系统 ###
-- rootfs
-- proc
-- sysfs
-- sockfs
-- aufs
-
-## 核心函数 ##
-- vfs\_caches\_init初始化缓存
-	- dcache_init目录项缓存
-	- inode_init节点缓存
-	- files_init文件缓存
-	- mnt_init挂节点缓存
-		- kernfs_init
-		- sysfs_init
-		- init_rootfs
-		- init_mount_tree
-			- vfs\_kern\_mount 
-	- bdev_cache_init块设备缓存
-	- chrdev_init字符设备缓存 
-- register_filesystem
-- mount\_nodev、
-- vfs\_kern\_mount
-	- mount\_fs
-
-
+- 核心函数
+	- vfs\_caches\_init初始化缓存
+		- dcache_init目录项缓存
+		- inode_init节点缓存
+		- files_init文件缓存
+		- mnt_init挂节点缓存
+			- kernfs_init
+			- sysfs_init
+			- init_rootfs
+			- init_mount_tree
+				- vfs\_kern\_mount 
+		- bdev_cache_init块设备缓存
+		- chrdev_init字符设备缓存 
+	- register_filesystem
+	- mount\_nodev、
+	- kern_mount宏，很多内置文件系统通过该宏挂载
+		- vfs\_kern\_mount
+			- mount\_fs
 ## ramfs文件系统 ##
 
 > 调用register_filesystem注册ramfs文件类型	
