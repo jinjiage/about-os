@@ -7,12 +7,12 @@
 	------------------------------------------------------------    内核空间
 	文件 虚拟：            VFS虚拟文件系统
          -------------------------------------------------------    
-    系统 具体： procfs sysfs   sockfs      Ext2/3         devfs
-	-----------------|----------|-----------|-------------|-----
-                              网络协议    通用块层
-		                      网卡驱动    IO调度层       设备驱动
-	-----------------|----------|------------|------------|-----
-    硬件          内    存     网 卡   硬盘及其他块设备    其他设备  
+    系统 具体： procfs/sysfs(特殊文件)   sockfs   Ext2/3(普通文件)   devfs(设备文件)
+	-----------------|--------------------|-----------|-----------------|-----
+                                       网络协议    通用块层
+		                               网卡驱动    IO调度层           设备驱动
+	-----------------|--------------------|------------|----------------|-----
+    硬件          内    存              网   卡  硬盘及其他存储块设备   其他设备  
 	------------------------------------------------------------
 	linux的文件系统处于系统调用层和块I/O子系统之间，包含VFS虚拟文件系统和具体文件系统两部分：
     1、VFS是上层应用和具体文件系统之间的接口层，被称为虚拟文件系统，也称为虚拟文件系统交换层（Virtual Filesystem Switch），它为应用程序员提供一层抽象，屏蔽底层各种具体文件系统的差异；它将各种具体文件系统的操作和管理内入统一的框架；
@@ -30,7 +30,6 @@ linux提供了open、read、write、mount等常见的文件系统相关的调用
 	- vfsmount
 
 ### VFS虚拟文件系统 ###
-file_systems（定义在fs/filesystems.c）指向文件系统类型的指针
 
 ### 代表性的具体文件系统 ###
 - rootfs
@@ -106,23 +105,46 @@ file_systems（定义在fs/filesystems.c）指向文件系统类型的指针
 
 ## proc文件系统 ##
 ### 核心数据结构
-- struct proc_dir_entry {
+- struct proc\_dir\_entry代表目录和文件
+
+	在proc文件系统中，由proc\_dir\_entry代表目录，而/proc目录比较特殊，该目录下有一些“数字”代表进程的PID，而其他proc\_dir\_entry由proc_mkdir函数创建
+
+	    struct proc_dir_entry proc_root = {
+	    	.low_ino	= PROC_ROOT_INO, 
+	    	.namelen	= 5, 
+	    	.mode		= S_IFDIR | S_IRUGO | S_IXUGO, 
+	    	.nlink		= 2, 
+	    	.count		= ATOMIC_INIT(1),
+	    	.proc_iops	= &proc_root_inode_operations,  //其他目录，使用proc_dir_inode_operations；文件，使用proc_file_inode_operations
+	    	.proc_fops	= &proc_root_operations,        //其他目录，使用proc_dir_operations
+	    	.parent		= &proc_root,                   //指向自身，其他目录指向父目录的proc_dir_entry
+	    	.subdir		= RB_ROOT,
+	    	.name		= "/proc",
+    	};
+
 - static const struct file_operations proc_reg_file_ops
 - static const struct inode_operations proc_root_inode_operations
 - struct proc_dir_entry proc_root
 - static struct file_system_type proc_fs_type
 
 ### 核心函数 ###
-- proc_create
+- proc\_root\_init函数，初始化
+	1. 调用proc\_init\_inodecache创建inode缓存
+	2. 调用register\_filesystem注册文件系统proc\_fs_type
+
+			static struct file_system_type proc_fs_type = {
+	    		.name		= "proc",
+	    		.mount		= proc_mount,
+	    		.kill_sb	= proc_kill_sb,
+	    		.fs_flags	= FS_USERNS_MOUNT,
+	    	};
+
+- proc_mkdir函数，用于创建目录
+- proc_create函数，用于创建文件
 
 > 调用register_filesystem注册proc文件类型		
 
-	static struct file_system_type proc_fs_type = {
-		.name		= "proc",
-		.mount		= proc_mount,
-		.kill_sb	= proc_kill_sb,
-		.fs_flags	= FS_USERNS_MOUNT,
-	};
+
 
 ## sysfs文件系统 ##
 ### 初始化 ###
