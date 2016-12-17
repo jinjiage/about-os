@@ -25,18 +25,19 @@ linux提供了open、read、write、mount等常见的文件系统相关的调用
 	- 通过系统调用层COMPAT_SYSCALL_DEFINE5(mount和SYSCALL_DEFINE5(mount
 		- do_mount
 			- do\_new\_mount
-				- vfs\_kern_mount,通过file\_system_type和文件系统名称返回vfsmount挂载点
+				- vfs\_kern\_mount，通过file\_system_type和文件系统名称返回vfsmount挂载点
 
 ## VFS虚拟文件系统 ##
 - 概念
-	- filesystem type
-	- super block
-	- inode
-	- dentry
-	- vfsmount
+	- 文件系统类型结构filesystem，
+	- 超级块结构super_block
+	- 索引节点结构inode
+	- 目录项结构dentry
+	- 文件结构
+	- 挂载点结构vfsmount
 
 - 核心函数
-	- vfs\_caches\_init初始化缓存
+	- vfs\_caches\_init初始化文件系统
 		- dcache_init目录项缓存
 		- inode_init节点缓存
 		- files_init文件缓存
@@ -173,3 +174,25 @@ linux提供了open、read、write、mount等常见的文件系统相关的调用
 		.mount = cgroup_mount,
 		.kill_sb = cgroup_kill_sb,
 	};
+
+## 文件系统初始化流程
+- start_kernel()
+	- vfs\_caches\_init_early()
+		- dcache\_init_early()，为文件系统的目录项结构dentry分配哈希
+		- inode\_init_early()，为文件系统的inode索引节点分配哈希
+	- vfs\_caches_init()
+		- dcache_init()，为文件系统的目录项结构dentry分配内存及哈希
+		- inode_init()，为文件系统的inode索引节点分配内存及哈希
+	    - files_init(mempages)，为文件结构分配内存
+	    - mnt_init()
+		    - sysfs_init()，注册sysfs文件系统
+			- init_rootfs()，注册rootfs文件系统
+			- init\_mount_tree()
+				- vfs\_kern_mount(type, 0, "rootfs", NULL)，挂载rootfs
+				- create\_mnt_ns()，创建命名空间namespace
+				- set\_fs_pwd(current->fs, &root)，命名空间赋值给init_task进程的pwd和root
+				- set\_fs_root(current->fs, &root)
+		- bdev_cache_init()
+			- kmem_cache_create()，为bdev文件系统的inode索引节点分配内存
+			- kern_mount(&bd_type)，挂载bdev文件系统
+		- chrdev_init()，为字符设备初始化设备号
