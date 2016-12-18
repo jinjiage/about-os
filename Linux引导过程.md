@@ -25,3 +25,15 @@
 ## 内核信息
 	cat /proc/cmdline
 	cat /proc/kallsyms
+
+## 启动参数
+- 搜索__setup(
+
+## 启动流程
+- struct task\_struct init\_task = INIT\_TASK(init_task);
+- union thread\_union init\_thread_union \_\_init\_task\_data = { INIT\_THREAD\_INFO(init\_task) };
+
+- start\_kernel
+	1. rest_init
+		1. kernel\_thread(kernel\_init, NULL, CLONE_FS)，创建PID=1的进程
+		2. kernel\_thread(kthreadd, NULL, CLONE\_FS | CLONE_FILES)，创建PID=2的进程
