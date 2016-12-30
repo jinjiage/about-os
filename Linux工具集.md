@@ -33,4 +33,4 @@
 ![](doc/pgrep.png)
 
 - pstack命令，显示进程的栈跟踪信息
-![](doc/pstrack.png)
+![](doc/pstack.png)
