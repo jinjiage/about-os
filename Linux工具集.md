@@ -47,3 +47,7 @@
 - nc命令，用于创建任意的TCP/UDP连接或者是监听连接
 	
 	![](doc/nc.PNG)
+
+- ss命令，显示socket的统计信息
+
+	![](doc/ss.PNG)
