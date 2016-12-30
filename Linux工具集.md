@@ -1,16 +1,13 @@
 # Linux工具集 #
 ## 进程相关
 - top命令
-![](doc/top.png)
-
+![](doc/top.PNG)
 
 	1. 20:37:38是当前时间，up 2:20是系统运行多长时间，2 users指出当前用户登录数，load average指出系统负载，三个值分别是1分钟，5分钟，15分钟的系统负载平均值；（等同于uptime）
 	2. Task指出了当前系统有多少个进程，以及各种状态的进程统计信息
 	3. %Cpu(s)，代表了CPU占用比例
 	
 		>us用户模式 sy系统模式 ni优先值 id空闲CPU百分比 wa等待输入输出CPU事件百分比 hi中断 si软中断 st？
-	
-
 	4. 物理内存信息
 	5. 交换内存信息
 	6. 
@@ -30,11 +27,11 @@
 - ps命令
 
 - pgrep命令，根据名称或者其它属性查询进程信息
-![](doc/pgrep.png)
+![](doc/pgrep.PNG)
 
 - pstack命令，显示进程的栈跟踪信息
-![](doc/pstack.png)
+![](doc/pstack.PNG)
 
 - strace命令，跟踪系统调用
-
-    ![](doc/strace.png)
+	
+	![](doc/strace.PNG)
