@@ -26,3 +26,11 @@
 		- %MEM 内存使用量
 		- TIME+ CPU时间，百分之一
 		- COMMAND 程序名称
+
+- ps命令
+
+- pgrep命令，根据名称或者其它属性查询进程信息
+![](doc/pgrep.png)
+
+- pstack命令，显示进程的栈跟踪信息
+![](doc/pstrack.png)
