@@ -38,3 +38,7 @@
 - strace命令，跟踪系统调用
 	
 	![](doc/strace.PNG)
+
+	    -p pid,直接attach上去跟踪
+	    -e open,futex等，过滤指定系统调用
+	    -c，统计系统调用
