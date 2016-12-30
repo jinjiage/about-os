@@ -47,6 +47,20 @@
 - nc命令，用于创建任意的TCP/UDP连接或者是监听连接
 	
 	![](doc/nc.PNG)
+			
+		#传递文件
+		server: nc -l 8888 > filename.out
+		client: nc ip 8888 < filename.in
+
+		#传递整个目录
+		server： nc -l 8888 | tar zxvf -
+		client： tar zcvf - dirname |nc server 8888
+				
+		#模拟http请求
+		echo -n "GET / HTTP/1.0\r\n\r\n" | nc webserver 80
+
+		#扫描端口
+		nc -z server 1-100
 
 - ss命令，显示socket的统计信息
 
