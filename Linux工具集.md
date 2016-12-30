@@ -1,7 +1,7 @@
 # Linux工具集 #
 ## 进程相关
 - top命令
-![](doc/top.PNG)
+	![](doc/top.PNG)
 
 	1. 20:37:38是当前时间，up 2:20是系统运行多长时间，2 users指出当前用户登录数，load average指出系统负载，三个值分别是1分钟，5分钟，15分钟的系统负载平均值；（等同于uptime）
 	2. Task指出了当前系统有多少个进程，以及各种状态的进程统计信息
@@ -27,10 +27,10 @@
 - ps命令
 
 - pgrep命令，根据名称或者其它属性查询进程信息
-![](doc/pgrep.PNG)
+	![](doc/pgrep.PNG)
 
 - pstack命令，显示进程的栈跟踪信息
-![](doc/pstack.PNG)
+	![](doc/pstack.PNG)
 
 - strace命令，跟踪系统调用
 	
