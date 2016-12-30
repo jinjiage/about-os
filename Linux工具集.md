@@ -34,3 +34,7 @@
 
 - pstack命令，显示进程的栈跟踪信息
 ![](doc/pstack.png)
+
+- strace命令，跟踪系统调用
+
+    ![](doc/strace.png)
