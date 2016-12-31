@@ -71,6 +71,14 @@
 
 	![](doc/ss.PNG)
 
-## 高级性能分和诊断工具
+## 高级性能分析和诊断工具
 
 ![](doc/tracer.png)
+### ftrace
+1. Ftrace文档：Documentation/trace/ftrace.txt和ftrace-design.txt
+2. Ftrace简介：http://www.ibm.com/developerworks/cn/linux/l-cn-ftrace/
+3. 使用ftrace调试Linux内核：http://www.ibm.com/developerworks/cn/linux/l-cn-ftrace1/
+
+### perf_events
+
+### 资料
