@@ -15,7 +15,7 @@
 
 ---
 
-[Linux Shell编程](./Linux—Shell编程.md)
+[Linux Shell编程](./Linux—Shell编程.md)、[有关git](https://github.com/yejinlei/about-git)
 
 ---
 
