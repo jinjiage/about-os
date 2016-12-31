@@ -12,6 +12,13 @@
 ---
 
 ## 二、有关Linux运维
+
+---
+
+[Linux软件包管理](./Linux软件包管理.md）
+
+---
+
 ###shell内置命令
     sh -n xxx.sh       	#检查语法
 	sh -vx xxx.sh		#运行跟踪
@@ -40,13 +47,6 @@
 
 ###debian/ubuntu软件包管理
 ![debian软件分发等级制度](doc/debian软件分发等级制度.png)
-
-#### APT
-- apt-get update       #获取软件包列表，/var/state/apt/lists/
-- apt-get dist-upgrade #如软件已更新，下载
-- 
-###redhat/suse软件包管理
-- rpm -qa #列出所有安装包
 
 ###键盘布局
 	loadkeys "keymap_name"		#键盘布局，ubuntu：/usr/share/ibus/keymaps
