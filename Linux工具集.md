@@ -70,3 +70,7 @@
 - ss命令，显示socket的统计信息
 
 	![](doc/ss.PNG)
+
+## 高级性能分和诊断工具
+
+![](doc/tracer.png)
