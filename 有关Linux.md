@@ -15,7 +15,7 @@
 
 ---
 
-[Linux Shell编程](./Linux—Shell编程.md)、[有关git](https://github.com/yejinlei/about-git)
+[Linux Shell编程](./Linux—Shell编程.md)、[版本控制 - yejinlei/about-git](https://github.com/yejinlei/about-git)、[编译器技术 - yejinlei/about-compiler](https://github.com/yejinlei/about-compiler)
 
 ---
 
