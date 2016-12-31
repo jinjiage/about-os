@@ -11,12 +11,20 @@
 
 ---
 
-## 二、有关Linux运维
+## 二、有关Linux编程
+
+---
+
+[Linux Shell编程](./Linux—Shell编程.md)
+
+---
+
+## 三、有关Linux运维
 
 ---
 
 [Linux软件包管理](./Linux软件包管理.md)
-
+	
 ---
 
 ###shell内置命令
