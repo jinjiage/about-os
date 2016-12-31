@@ -85,3 +85,18 @@
 - [SysVinit (简体中文)] (https://wiki.archlinux.org/index.php/SysVinit_\(简体中文\))
 - UNIX Linux系统管理技术手册（第4版）
 - Linux命令行与Shell脚本编程大全
+- 《30天自制操作系统》
+- [6.828: Operating System Engineering](https://pdos.csail.mit.edu/6.828/2011/schedule.html)
+- [JamesM's kernel development tutorials](http://johnvidler.co.uk/mirror/jamesm-kernel-tutorial/tutorial_html/)
+- [x86架构操作系统内核的实现 online](http://wiki.0xffffff.org/),[download](https://github.com/hurley25/Hurlex-II)
+- [hurlex 项目的完整开发文档](http://hurlex.0xffffff.org/)
+- [OSDev.org](http://wiki.osdev.org/Main_Page)
+- [Xv6, a simple Unix-like teaching operating system](https://pdos.csail.mit.edu/6.828/2012/xv6.html)
+- [How-to-Make-a-Computer-Operating-System](https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System)
+- [TedkOS](https://github.com/TakefiveInteractive/TedkOS)
+- [FreeNOS](https://github.com/lordsergio/FreeNOS)
+- [Bran's Kernel Development Tutorial](http://www.osdever.net/bkerndev/Docs/gettingstarted.htm)
+- [基于 Bochs 的操作系统内核实现](http://fleurer-lee.com/paper.html)
+- [ranxian/xv6-chinese · GitHub](https://github.com/ranxian/xv6-chinese)
+- [从无到有编写一个OS内核](http://www.ilovecl.com/2015/09/15/os_redleaf/)
+- [Operating System Development Series](http://www.brokenthorn.com/Resources/OSDevIndex.html)
