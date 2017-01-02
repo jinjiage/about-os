@@ -23,7 +23,7 @@
 linux提供了open、read、write、mount等常见的文件系统相关的调用接口,还有一些专用的系统调用，例如sockfs文件系统的socket、bind
 
 - mount命令
-	- 通过系统调用层COMPAT_SYSCALL_DEFINE5(mount和SYSCALL_DEFINE5(mount
+	- 通过系统调用层COMPAT\_SYSCALL\_DEFINE5(mount和SYSCALL_DEFINE5(mount
 		- do_mount
 			- do\_new\_mount
 				- vfs\_kern\_mount，通过file\_system_type和文件系统名称返回vfsmount挂载点
@@ -120,10 +120,10 @@ linux提供了open、read、write、mount等常见的文件系统相关的调用
 	    	.name		= "/proc",
     	};
 
-- static const struct file_operations proc_reg_file_ops
-- static const struct inode_operations proc_root_inode_operations
-- struct proc_dir_entry proc_root
-- static struct file_system_type proc_fs_type
+- static const struct file\_operations proc\_reg\_file\_ops
+- static const struct inode\_operations proc\_root\_inode\_operations
+- struct proc\_dir\_entry proc_root
+- static struct file\_system\_type proc\_fs\_type
 
 ### 核心函数 ###
 - proc\_root\_init函数，初始化
@@ -191,9 +191,9 @@ linux提供了open、read、write、mount等常见的文件系统相关的调用
 			- init\_mount_tree()
 				- vfs\_kern_mount(type, 0, "rootfs", NULL)，挂载rootfs
 				- create\_mnt_ns()，创建命名空间namespace
-				- set\_fs_pwd(current->fs, &root)，命名空间赋值给init_task进程的pwd和root
+				- set\_fs\_pwd(current->fs, &root)，命名空间赋值给init_task进程的pwd和root
 				- set\_fs_root(current->fs, &root)
-		- bdev_cache_init()
-			- kmem_cache_create()，为bdev文件系统的inode索引节点分配内存
-			- kern_mount(&bd_type)，挂载bdev文件系统
+		- bdev\_cache_init()
+			- kmem\_cache_create()，为bdev文件系统的inode索引节点分配内存
+			- kern\_mount(&bd_type)，挂载bdev文件系统
 		- chrdev_init()，为字符设备初始化设备号
