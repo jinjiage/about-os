@@ -30,27 +30,16 @@ linux提供了open、read、write、mount等常见的文件系统相关的调用
 
 ## VFS虚拟文件系统 ##
 - 概念
-	- 文件系统类型结构filesystem，
+	- 文件系统类型结构filesystem
 	- 超级块结构super_block
 	- 索引节点结构inode
 	- 目录项结构dentry
-	- 文件结构
+	- 文件结构file
 	- 挂载点结构vfsmount
 
 - 核心函数
-	- vfs\_caches\_init初始化文件系统
-		- dcache_init目录项缓存
-		- inode_init节点缓存
-		- files_init文件缓存
-		- mnt_init挂节点缓存
-			- kernfs_init
-			- sysfs_init
-			- init_rootfs
-			- init_mount_tree
-				- vfs\_kern\_mount 
-		- bdev_cache_init块设备缓存
-		- chrdev_init字符设备缓存 
-	- register_filesystem
+	- vfs\_caches\_init，为文件系统准备缓存，参考《文件系统初始化流程》
+	- register\_filesystem，注册文件系统，本质上把预定义的file\_system\_type类型变量放到全局变量file_systems中
 	- mount\_nodev、
 	- kern_mount宏，很多内置文件系统通过该宏挂载
 		- vfs\_kern\_mount
