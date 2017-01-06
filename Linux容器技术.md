@@ -8,6 +8,8 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 
 ## namespaces命名空间 ##
 ## cgroups控制组 ##
+### cgroups文件系统 ###
+### cgroups子系统 ###
 1. cpu子系统，限制进程的cpu使用率
 1. cpuacct子系统，cpu使用报告
 1. cpuset子系统，分配单独的cpu节点或者内存节点
