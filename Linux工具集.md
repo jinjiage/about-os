@@ -76,9 +76,9 @@
 ![](doc/tracer.png)
 ### ftrace
 1. Ftrace文档：Documentation/trace/ftrace.txt和ftrace-design.txt
-2. Ftrace简介：http://www.ibm.com/developerworks/cn/linux/l-cn-ftrace/
-3. 使用ftrace调试Linux内核：http://www.ibm.com/developerworks/cn/linux/l-cn-ftrace1/
-4. Ftrace 实现原理与开发实践：http://tinylab.org/ftrace-principle-and-practice/?utm_source=tuicool&utm_medium=referral
+2. [Ftrace简介](http://www.ibm.com/developerworks/cn/linux/l-cn-ftrace/)
+3. [使用ftrace调试Linux内核](http://www.ibm.com/developerworks/cn/linux/l-cn-ftrace1/)
+4. [Ftrace 实现原理与开发实践](http://tinylab.org/ftrace-principle-and-practice/?utm_source=tuicool&utm_medium=referral)
 
 ### perf_events
 
