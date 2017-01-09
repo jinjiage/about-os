@@ -7,6 +7,13 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 - AUFS层状文件系统 - *提供文件系统的隔离*
 
 ## namespaces命名空间 ##
+1. UTS: 命名空间间hostname主机名隔离
+1. IPC: 命名空间内进程间通信
+1. PID: 命名空间间的进程PID隔离
+1. NS: 挂载点隔离
+1. NET: 网络隔离
+1. USER: 虚拟user-id映射到真实的user-id
+
 ## cgroups控制组 ##
 ### cgroups文件系统 ###
 ### cgroups子系统 ###
