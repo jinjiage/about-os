@@ -62,6 +62,8 @@
 - apt-get purge pkgnames，删除软件包配置，apt-get remove --purge pkgnames
 - apt-get changelog pkgnames，软件包的更新日志
 - apt-get check，显示损坏的依赖关系
+- sudo add-apt-repository ppa:[jonathonf/vim],添加ppa软件，然后使用apt-get update命令获取软件包列表，最后使用apt-get install [vim]安装软件
+http://ppa.launchpad.net/jonathonf/vim/ubuntu
 
 ### 本地dpkg命令
 - dpkg -I pkg.deb#查看软件包的详细信息，包括软件名称、版本以及大小等（其中-I等价于--info）
