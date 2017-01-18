@@ -18,7 +18,12 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 ### 系统调用 ###
 1. clone() - 在新namespace中创建新进程
 1. unshare() - 进程脱离某个namwspace
-1. setns() - 进程加入某个namespace    
+1. setns() - 进程加入某个namespace 
+
+### 实验 ###
+#### UTS ####
+![](doc/uts_research1.png)
+![](doc/uts_research2.png)
 
 ## cgroups控制组 ##
 ### cgroups文件系统 ###
