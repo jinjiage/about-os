@@ -9,16 +9,27 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 ## namespaces命名空间 ##
 ### 空间类型 ###
 1. UTS - CLONE_NEWUTS,命名空间间hostname主机名隔离,始于Linux2.4.19
-1. IPC - CLONE_NEWIPC,命名空间内进程间通信,始于Linux2.6.19
+1. IPC - CLONE_NEWIPC,隔离System V IPC objects和POSIX message queues,始于Linux2.6.19
 1. PID - CLONE_NEWPID，命名空间间的进程PID隔离，始于Linux2.6.24
 1. NS - CLONE_NEWNS，挂载点隔离，始于Linux2.4.19
 1. NET - CLONE_NEWNET，网络隔离，始于Linux2.6.29
-1. USER - SCLONE_NEWUSER，虚拟user-id映射到真实的user-id，始于Linux3.S8
+1. USER - SCLONE_NEWUSER，虚拟user-id映射到真实的user-id，始于Linux3.8
 
 ### 系统调用 ###
 1. clone() - 在新namespace中创建新进程
 1. unshare() - 进程脱离某个namwspace
-1. setns() - 进程加入某个namespace 
+1. setns() - 进程加入某个namespace
+
+### proc文件系统 ###
+![](doc/proc_ns.png)
+
+*通过proc文件系统可以查看对namespace及cgroup的支持程度及相关**ID**,这个ID很重要，唯一标识命名空间及cgroup组，用户程序也使用ID*
+
+### 用户程序 ###
+1. unshare
+1. nsenter
+1. ipcmk
+1. ipcs 
 
 ### 实验 ###
 #### UTS ####
