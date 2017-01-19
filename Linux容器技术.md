@@ -32,9 +32,27 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 1. ipcs 
 
 ### 实验 ###
-#### UTS ####
+#### UTS命名空间 ####
 ![](doc/uts_research1.png)
 ![](doc/uts_research2.png)
+
+#### IPC命名空间 ####
+##### IPC类型 #####
+1. 管道 - 进程
+1. FIFO - 进程
+1. UNIX domain socket - 进程
+1. Internet domain socket - 进程
+1. System V消息队列 - 内核（全局）
+1. System V信号量 - 内核（全局）
+1. System V共享内存 - 内核（全局）
+1. POSIX消息队列 - 内核（全局）
+1. POSIX命名信号量 - 内核（全局）
+1. POSIX无名信号量 - 内核 or 进程
+1. POSIX共享内存 - 内核（全局）
+1. 匿名映射 - 进程
+1. 内存映射文件 - 文件系统
+1. flock锁 - 进程
+1. fcntl锁 - 进程
 
 ## cgroups控制组 ##
 ### cgroups文件系统 ###
