@@ -61,6 +61,7 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 ![](doc/fdisk-l.png)
 ![](doc/proc-filesystems.png)
 ![](doc/df-aThi.png)
+![](doc/parted.png)
 *文件系统机制请参考*[Linux文件系统](./Linux文件系统.md)
 
 ## cgroups控制组 ##
