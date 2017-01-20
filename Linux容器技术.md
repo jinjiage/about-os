@@ -28,8 +28,9 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 ### 用户程序 ###
 1. unshare
 1. nsenter
-1. ipcmk
-1. ipcs 
+1. hostname - uts工具
+1. ipcmk - ipc工具，用于创建共享内存、消息队列、信号量ipc资源
+1. ipcs - ipc工具，与ipcmk配套用于查询ipc资源
 
 ### 实验 ###
 #### UTS命名空间 ####
@@ -54,6 +55,13 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 1. flock锁 - 进程
 1. fcntl锁 - 进程
 *内核（全局）范围归IPC命名空间隔离*
+
+#### mount命名空间 #####
+##### 支持的文件系统、挂接情况 #####
+![](doc/fdisk-l.png)
+![](doc/proc-filesystems.png)
+![](doc/df-aThi.png)
+*文件系统机制请参考*[Linux文件系统](./Linux文件系统.md)
 
 ## cgroups控制组 ##
 ### cgroups文件系统 ###
