@@ -56,7 +56,7 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 1. fcntl锁 - 进程
 *内核（全局）范围归IPC命名空间隔离*
 
-#### mount命名空间 #####
+#### mount命名空间 ####
 ##### 支持的文件系统、挂接情况 #####
 ![](doc/fdisk-l.png)
 ![](doc/proc-filesystems.png)
@@ -64,6 +64,15 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 ![](doc/parted.png)
 
 *包含windows分区，文件系统机制，请参考*[Linux文件系统](./Linux文件系统.md)
+
+#### PID命名空间 ####
+##### 预备知识 #####
+1. PID命名空间可以嵌套，嵌套空间构成父子关系
+1. 父空间里可以看到子孙空间的进程信息，反之则不可以
+1. 空间里的第一个PID等于1,子空间也一样
+![](doc/ps-o.png)
+
+*SPID会话ID，PGID工作组ID，PPID父进程ID，TGID线程组ID*
 
 ## cgroups控制组 ##
 ### cgroups文件系统 ###
