@@ -74,6 +74,11 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 
 *SPID会话ID，PGID工作组ID，PPID父进程ID，TGID线程组ID*
 
+#### network命名空间 ####
+![](doc/ifconfig.png)
+![](doc/iwconfig.png)
+*协议及网络管理工具，请参考*[Linux网络管理](./Linux网络管理.md)
+
 ## cgroups控制组 ##
 ### cgroups文件系统 ###
 ### cgroups子系统 ###
