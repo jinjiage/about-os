@@ -42,6 +42,7 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 1. 管道 - 进程
    
     pipe是第一个广泛使用的IPC形式，可以在程序中使用，也可以在shell中使用，缺点就是没有名字只能用于有亲缘关系的进程间通信，例如父子进程。
+    
     ![](doc/pipe1.png)
    
 1. FIFO - 进程
@@ -81,6 +82,7 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 #### network命名空间 ####
 ![](doc/ifconfig.png)
 ![](doc/iwconfig.png)
+
 *协议及网络管理工具，请参考*[Linux网络管理](./Linux网络管理.md)
 
 ## cgroups控制组 ##
