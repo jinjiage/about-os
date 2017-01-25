@@ -105,6 +105,7 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 
 ### docker命令 ###
 1. docker info
+
     ![](doc/docker-info.png)
 
 1. docker pull
