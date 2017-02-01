@@ -38,7 +38,7 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 ![](doc/uts_research2.png)
 
 #### IPC命名空间 ####
-[Linux进程间通信](./Linux进程间通信.md)，*内核（全局）范围归IPC命名空间隔离*
+IPC相关知识，请参考[Linux进程间通信](./Linux进程间通信.md)，*内核（全局）范围归IPC命名空间隔离*
 
 ##### 实验 #####
 
