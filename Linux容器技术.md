@@ -16,7 +16,7 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 1. USER - SCLONE_NEWUSER，虚拟user-id映射到真实的user-id，始于Linux3.8
 
 ### 系统调用 ###
-1. clone() - 在新namespace中创建新进程
+1. clone() - 创建进程，涉及进程管理知识请参考[Linux进程管理](Linux进程管理.md),与namespace相关部分，参考如下：
 
     ![](doc/clone-namespace.jpg)
 
