@@ -277,3 +277,6 @@ shmctl|	控制共享内存|
 shmget|	获取共享内存|
 shmat|	连接共享内存|
 shmdt|	拆卸共享内存|
+
+## 资料 ##
+1. [Linux系统调用列表](http://www.ibm.com/developerworks/cn/linux/kernel/syscall/part1/appendix.html)
