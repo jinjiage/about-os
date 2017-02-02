@@ -84,7 +84,7 @@ fchmod|	参见chmod|
 chown|	改变文件的属主或用户组|
 fchown|	参见chown|
 lchown|	参见chown|
-chroot|	改变根目录|
+chroot|	改变根目录|![](doc/chroot.png)
 stat|	取文件状态信息|
 lstat|	参见stat|
 fstat|	参见stat|
