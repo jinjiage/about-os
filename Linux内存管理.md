@@ -62,6 +62,8 @@
 ### alloc_pages，申请页面返回页面地址 ###
 ### page_address，页面地址转内存地址 ###
 
+## swap交换区 ##
+1. 内核中涉及swap交换区的数据结构struct swap\_info\_struct *swap\_info[MAX_SWAPFILES]; //MAX_SWAPFILES大致为32
 
 ## glibc内存管理（用户空间）
 
