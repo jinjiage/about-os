@@ -101,10 +101,15 @@ IPC相关知识，请参考[Linux进程间通信](./Linux进程间通信.md)，*
 ![](doc/ifconfig.png)
 ![](doc/iwconfig.png)
 
-	docker run创建Docker容器时，--net选项指定容器网络模式，Docker有以下4种网络模式：
-	host模式，使用--net=host与主机相同，不创建独立的Network命名空间（网卡、路由、iptable规则等）；
-	container模式，使用--net=container:NAME_or_ID，加入到指定容器使用的Network命名空间；
-	none模式，使用--net=none，不设置网络；
-	bridge模式，使用--net=bridge为默认模式，创建独立的Network命名空间，通过veth pair、网桥互联；
+docker run创建Docker容器时，--net选项指定容器网络模式，Docker有以下4种网络模式：
+
+- host模式，使用--net=host与主机相同，不创建独立的Network命名空间（网卡、路由、iptable规则等）；
+- container模式，使用--net=container:NAME_or_ID，加入到指定容器使用的Network命名空间；
+
+- none模式，使用--net=none，不设置网络；
+
+- bridge模式，使用--net=bridge为默认模式，创建独立的Network命名空间，通过veth pair、网桥互联；
+    
+   ![](doc/docker-bridge.png)
 
 * 虚拟网卡veth、网桥等网络设备原理与实现，请参考*[Linux网络管理](./Linux网络管理.md)
