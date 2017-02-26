@@ -6,6 +6,9 @@
 ## Linux网络实现及数据流 ##
 ![](doc/Network_data_flow_through_kernel.png)
 
+## Linux网络IO模型 ##
+![](doc/io-model.png)
+
 ## 网络设备 ##
 
 ### 网桥briage ###
