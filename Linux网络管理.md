@@ -36,9 +36,9 @@
 		
 	![](doc/blocking.png)
 
-	单进程模型             |  多线程/进程模式
-	:-------------------------:|:-------------------------:
-	![](doc/network-singleprocess.png)  |  ![](doc/network-multithread.png)
+	单进程模型             |  多线程/进程模式 | 线程池模式
+	:-------------------------:|:-------------------------::-------------------------:|
+	![](doc/network-singleprocess.png)  |  ![](doc/network-multithread.png) |  ![](doc/network-threadpool.png)
 
 - nonblocking 同步非阻塞式I/O
 
