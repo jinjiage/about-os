@@ -51,9 +51,15 @@
 
 - multiplexing I/O多路复用(select/poll/epoll)
 
+	![](doc/multiplexing.png)
+
 - signal driven 信号驱动式I/O(SIGIO)
 
+	![](doc/signal-driven.png)
+
 - asynchronous 异步I/O(POSIX的aio_系列函数)
+
+	![](doc/asynchronous.png)
 
 ## 管理工具 ##
 - ifconfig
