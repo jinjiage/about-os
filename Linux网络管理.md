@@ -29,6 +29,27 @@
 - mode-tlb  5 自适应模式
 - mode-alb  6 网卡虚拟化方式
 
+## 网络IO模型及编程 ##
+- blocking 同步阻塞式I/O
+	
+	默认情况下,所有套接口都是阻塞的
+		
+	![](doc/blocking.png)
+
+	单进程模型             |  多线程/进程模式
+	:-------------------------:|:-------------------------:
+	![](doc/network-singleprocess.png)  |  ![](doc/network-multithread.png)
+
+- nonblocking 同步非阻塞式I/O
+
+	![](doc/nonblocking.png)
+
+- multiplexing I/O多路复用(select/poll/epoll)
+
+- signal driven 信号驱动式I/O(SIGIO)
+
+- asynchronous 异步I/O(POSIX的aio_系列函数)
+
 ## 管理工具 ##
 - ifconfig
 - ethtool
