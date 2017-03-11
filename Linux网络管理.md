@@ -9,6 +9,18 @@
 ## Linux网络IO模型 ##
 ![](doc/io-model.png)
 
+## 网络子系统 ##
+### 网络设备初始化 ###
+- net\_dev_init
+	- dev_proc_init
+	- netdev_kobject_init
+	- register_pernet_subsys
+	- for_each_possible_cpu
+		- 初始化per_cpu接收队列softnet\_data
+
+### 网络协议初始化 ###
+- inet_init,注册网络协议
+
 ## 网络设备 ##
 
 ### 网桥briage ###
