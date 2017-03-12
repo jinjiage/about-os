@@ -40,7 +40,7 @@
 	- init_timers，定时器初始化
 	- softirq_init，软中断初始化
 	- proc_root_init，初始化proc文件系统，详见[Linux文件系统](Linux文件系统.md)
-		- proc_net_init
+		- proc_net_init,
 	- rest_init
 		1. kernel\_thread(**kernel\_init**, NULL, CLONE_FS)，创建PID=1的进程
 			- kernel\_init_freeable

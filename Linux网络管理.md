@@ -9,21 +9,29 @@
 ## Linux网络IO模型 ##
 ![](doc/io-model.png)
 
-## 网络子系统 ##
-### 网络设备初始化 ###
-- net\_dev_init
-	- dev_proc_init
-	- netdev_kobject_init
-	- register_pernet_subsys
-	- for_each_possible_cpu
-		- 初始化per_cpu接收队列softnet\_data
+## 网络协议栈各部分初始化 ##
+- **core_initcall：sock\_init初始，网络协议运行环境初始化**
+	- net\_sysctl\_init，初始化网络相关系统控制参数sysctl，机制部分详见[Linux系统控制参数sysctl](Linux系统控制参数sysctl.md)
+	- skb_init，创建socket buffer slab缓存
+	- init_inodecache，创建socket伪文件系统的inode缓存sock_inode_cachep
+	- register_filesystem，注册socket文件系统sockfs
+	- kern_mount，挂载sockfs文件系统
+	- ptp_classifier_init
+- **fs\_initcall：inet\_init，网络协议初始化**
+	- (void)sock_register(&inet_family_ops)，注册Internet协议族，放入全局net\_families，socket系统调用会利用inet\_family\_ops->create来创建socket句柄和内部sock对象
+- **subsys\_initcall：net\_dev_init，网络子系统初始化**
+	- dev\_proc_init
+	- netdev\_kobject_init
+	- register\_pernet_subsys
+	- for\_each\_possible\_cpu
+		- 初始化per\_cpu接收队列softnet\_data
+- **device\_initcall：设备驱动初始化**
 
-### 网络协议初始化 ###
-- inet_init,注册网络协议
+备注：core\_initcall/fs\_initcall等为初始化宏，级别越高越早初始化,详见[Linux引导过程](Linux引导过程.md)
 
 ## 网络设备 ##
 
-### 网桥briage ###
+### 网桥bridge ###
 
 ### 虚拟以太网卡veth ###
 
