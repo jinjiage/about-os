@@ -32,7 +32,15 @@
 ## 系统调用层（net\socket.c） ##
 - socket创建套接口，同时创建了sock对象、socket对象，file对象及fd
 	- SYSCALL_DEFINE3(socket, int, family, int, type, int, protocol)
-		- sock_create，创建sock对象，并封装在socket对象中返回
+		- sock_create
+			- __sock\_create，创建socket对象和sock对象，sock封装在socket中返回
+				- sock_alloc，创建socket对象
+				- =============协议相关开始,以IPv4协议族为例============
+				- 通过family(应用层传入)从全局对象net_families中找到net_proto_family对象（例如：IPv4协议族，AF\_INET,inet_family_ops）
+				- 调用net_proto_family.create创建sock对象（例如：IPv4协议族，实际调用inet_create）
+					- sk_alloc，创建sock对象
+					- inet_sk，sock对象转成子对象inet_sock对象
+					- sock_init_data，初始化sock对象，并与socket对象建立关系
 		- sock_map_fd，把socket对象封装到file对象
 			- fd_install，file对象映射到fd，并返回fd
 
