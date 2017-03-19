@@ -29,6 +29,15 @@
 
 备注：core\_initcall/fs\_initcall等为初始化宏，级别越高越早初始化,详见[Linux引导过程](Linux引导过程.md)
 
+## 系统调用层（net\socket.c） ##
+- socket创建套接口，同时创建了sock对象、socket对象，file对象及fd
+	- SYSCALL_DEFINE3(socket, int, family, int, type, int, protocol)
+		- sock_create，创建sock对象，并封装在socket对象中返回
+		- sock_map_fd，把socket对象封装到file对象
+			- fd_install，file对象映射到fd，并返回fd
+
+![](doc/net.png)
+
 ## 网络设备 ##
 
 ### 网桥bridge ###
