@@ -36,7 +36,7 @@
 			- __sock\_create，创建socket对象和sock对象，sock封装在socket中返回
 				- sock_alloc，创建socket对象
 				- =============协议相关开始,以IPv4协议族为例============
-				- 通过family(应用层传入)从全局对象net_families中找到net_proto_family对象（例如：IPv4协议族，AF\_INET,inet_family_ops）
+				- 通过family or domain(协议族或协议域，应用层传入)从全局对象net_families中找到net_proto_family对象（例如：IPv4协议族，AF\_INET,inet_family_ops）
 				- 调用net_proto_family.create创建sock对象（例如：IPv4协议族，实际调用inet_create）
 					- sk_alloc，创建sock对象
 					- inet_sk，sock对象转成子对象inet_sock对象
