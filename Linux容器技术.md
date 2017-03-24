@@ -20,8 +20,8 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 
     ![](doc/clone-namespace.jpg)
 
-1. unshare() - 进程脱离某个namwspace
-1. setns() - 进程加入某个namespace
+1. unshare() - 当前进程，创建并加入新的namwspace
+1. setns() - 当前进程加入已有namespace
 
 ### proc文件系统 ###
 ![](doc/proc_ns.png)

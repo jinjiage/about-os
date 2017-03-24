@@ -10,17 +10,17 @@
 ![](doc/io-model.png)
 
 ## 网络协议栈各部分初始化 ##
-- **core_initcall：sock\_init初始，网络协议运行环境初始化**
+- **core_initcall：sock\_init初始，网络协议运行环境初始化,即套接口层初始化**
 	- net\_sysctl\_init，初始化网络相关系统控制参数sysctl，机制部分详见[Linux系统控制参数sysctl](Linux系统控制参数sysctl.md)
 	- skb_init，创建socket buffer slab缓存
 	- init_inodecache，创建socket伪文件系统的inode缓存sock_inode_cachep
 	- register_filesystem，注册socket文件系统sockfs
 	- kern_mount，挂载sockfs文件系统
 	- ptp_classifier_init
-- **fs\_initcall：inet\_init，网络协议初始化**
+- **fs\_initcall：inet\_init，Internet协议族的初始化**
 	- (void)sock_register(&inet_family_ops)，注册Internet协议族，放入全局net\_families，socket系统调用会利用inet\_family\_ops->create来创建socket句柄和内部sock对象
-- **subsys\_initcall：net\_dev_init，网络子系统初始化**
-	- dev\_proc_init
+- **subsys\_initcall：net\_dev_init，网络设备处理层的初始化**
+	- dev\_proc_init，
 	- netdev\_kobject_init
 	- register\_pernet_subsys
 	- for\_each\_possible\_cpu
@@ -65,6 +65,13 @@
 - ieee802.3ad  4 动态链路聚合模式，需要交换机支持
 - mode-tlb  5 自适应模式
 - mode-alb  6 网卡虚拟化方式
+
+## 网络命名空间 ##
+- net_ns_init
+	- 系统默认init_net网络命名空间插入全局链表net_namespace_list尾部
+- copy_net_ns
+	- net_alloc，创建新的网络命名空间net对象
+	- 插入全局链表net_namespace_list尾部
 
 ## 网络IO模型及编程 ##
 - blocking 同步阻塞式I/O
