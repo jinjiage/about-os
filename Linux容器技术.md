@@ -80,16 +80,21 @@ IPC相关知识，请参考[Linux进程间通信](./Linux进程间通信.md)，*
 	- 一个子系统只能属于一个层级树；
 	- 一个层级树可以包含多个子系统，例如cpu和cpuacct通常会被挂载在同个层级树中；
 	- 一个进程可以属于多个层级树中（确切说是层级树的节点中）
+	- 层级树的节点等同于进程组
 ### cgroup文件系统 ###
 
 ![](doc/proc_cgroup.PNG)
 
 - cgroup在proc中的信息：
-	- subsys_name子系统名称；
+	- subsys_name子系统名称（cgroupsubsys.h中定义了所有subsystem子系统）；
 	- hierarchy，cgroup层级树id，如果多个子系统挂载在同个树，则id相同，但**一个子系统只能属于一个层级树**；（上图，cpu和cpuacct同为5，net_cls和net_prio同为6，说明两个子系统同时挂载在一个cgroup层级树上，也可以通过mount | grep cgroup或cat /proc/mounts查看子系统挂载情况）；
-		![](doc/mount_cgroup2.PNG)		
-	- num_cgroups，进程组数（例如以cpuset子系统为例，4代表共有4个进程组包含root或节点，垂直扩展；而devices子系统，共有83个进程组，大多水平扩展）
+		
+		![](doc/mount_cgroup2.PNG)
+		
+	- num_cgroups，进程组数或层级树上所有节点数（例如以cpuset子系统为例，4代表共有4个进程组包含root或节点，垂直扩展；而devices子系统，共有83个进程组，大多水平扩展）
+		
 		![](doc/mount_cgroup3.PNG)
+
 	- enabled，1代表启动子系统
 
 ![](doc/mount_cgroup1.PNG)
@@ -114,13 +119,20 @@ IPC相关知识，请参考[Linux进程间通信](./Linux进程间通信.md)，*
 	- /usr/sbin/cgrulesengd
 	- /usr/bin/cgcreate
 	- /usr/bin/cgclassify
+		- 将进程添加到进程组（例如，cgclassify -g subsystems:path_to_cgroup pidlist）
 	- /usr/bin/cgdelete
+		- 删除层级树下所有进程组（例如，cgdelete -r cpuset:/，删除cpuset子系统下所有进程组，但保留层级树及root进程组）
 	- /usr/bin/cgexec
+		- 直接在进程组中启动程序（例如，cgexec -g subsystems:path_to_cgroup command arguments，通常用于创建临时任务）
 	- /usr/bin/lscgroup
+		- 显示所有层级树的进程组列表，读取/sys/fs/cgroup下所有的目录，每个目录代表一个进程组
 	- /usr/bin/cgget
+		- 显示进程组信息（例如，cgget -g cpuset:/，等于读取/sys/fs/cgroup/cpuset下所有文件的内容)
 	- /usr/bin/lssubsys
+		- 显示所有子系统信息，-a支持的子系统，-m子系统挂载情况
 	- /usr/bin/cgsnapshot
 	- /usr/bin/cgset
+		- 设置进程组信息（例如，cgset -r cpuset.cpus=0-1 cpu,memory:/，也可以通过echo）
 
 
 ## AUFS层状文件系统 ##
