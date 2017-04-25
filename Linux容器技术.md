@@ -40,7 +40,8 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 ## Docker高阶 - 原理与机制 ##
 - namespaces命名空间 - *基于进程，提供环境的隔离，涉及[Linux进程管理](./Linux进程管理)、[Linux进程间通信](./Linux进程间通信)*
 - cgroups控制组 - *基于cgroup文件系统，提供资源的隔离*
-- AUFS层状文件系统 - *提供文件系统的隔离*
+- AUFS文件系统（ubuntu默认）
+- Devicemapper（loop-lvm），参考[Linux设备管理](Linux设备管理.md)
 
 ## namespaces命名空间 ##
 ### 空间类型 ###
