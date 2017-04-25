@@ -15,7 +15,7 @@
 
 ---
 
-[Linux Shell编程](./Linux—Shell编程.md)、[版本控制 - yejinlei/about-git](https://github.com/yejinlei/about-git)、[编译器技术 - yejinlei/about-compiler](https://github.com/yejinlei/about-compiler)、[vim配置 - yejinlei/vimplusplus](https://github.com/yejinlei/vimplusplus)
+[Linux Shell编程](./Linux—Shell编程.md)、[Linux模块编程](./Linux模块编程.md)、[版本控制 - yejinlei/about-git](https://github.com/yejinlei/about-git)、[编译器技术 - yejinlei/about-compiler](https://github.com/yejinlei/about-compiler)、[vim配置 - yejinlei/vimplusplus](https://github.com/yejinlei/vimplusplus)
 
 ---
 

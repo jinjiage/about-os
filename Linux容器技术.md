@@ -1,7 +1,11 @@
 # Linux容器技术 #
 Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依赖任何语言、框架或系统，可以将App变成一种标准化的、可移植的、自管理的组件，并脱离服务器硬件在任何主流系统中开发、调试和运行。
 
-## 容器核心技术 ##
+## Docker入门 ##
+
+## Docker进阶 ##
+
+## Docker高阶 ##
 - namespaces命名空间 - *基于进程，提供环境的隔离，涉及[Linux进程管理](./Linux进程管理)、[Linux进程间通信](./Linux进程间通信)*
 - cgroups控制组 - *基于cgroup文件系统，提供资源的隔离*
 - AUFS层状文件系统 - *提供文件系统的隔离*
@@ -65,9 +69,29 @@ IPC相关知识，请参考[Linux进程间通信](./Linux进程间通信.md)，*
 
 #### Network命名空间 ####
 
-## cgroups控制组 ##
-### cgroups文件系统 ###
-### cgroups子系统 ###
+## cgroup控制组 ##
+- 限制进程组的资源数量（例如，memory子系统可以为进程组设定memory使用上限，一旦进程组使用的内存达到限额再申请内存，就会出发OOM）；
+- 进程组的优先级控制（例如，可以使用cpu子系统为某个进程组分配特定cpu share）；
+- 记录进程组使用的资源数量（例如，cpuacct子系统记录某个进程组使用的cpu时间）；
+- 进程组隔离（例如，ns子系统可以使不同的进程组使用不同的namespace）；
+- 进程组控制（例如，freezer子系统可以将进程组挂起和恢复）；
+### cgroup文件系统 ###
+
+![](doc/proc_cgroup.PNG)
+
+- cgroup在proc中的信息：
+	- subsys_name子系统名称；
+	- hierarchy，cgroup层级树id，如果多个子系统挂载在同个树，则id相同，但**一个子系统只能属于一个层级树**；（上图，cpu和cpuacct同为5，net_cls和net_prio同为6，说明两个子系统同时挂载在一个cgroup层级树上，也可以通过mount | grep cgroup或cat /proc/mounts查看子系统挂载情况）；
+		![](doc/mount_cgroup2.PNG)		
+	- num_cgroups，进程组数（例如以cpuset子系统为例，4代表共有4个进程组包含root或节点，垂直扩展；而devices子系统，共有83个进程组，大多水平扩展）
+		![](doc/mount_cgroup3.PNG)
+	- enabled，1代表启动子系统
+
+![](doc/mount_cgroup1.PNG)
+
+- /sys/fs/cgroup本身为tmpfs文件系统，下层目录挂载cgroup文件系统
+
+### cgroup子系统 ###
 1. cpu子系统，限制进程的cpu使用率
 1. cpuacct子系统，cpu使用报告
 1. cpuset子系统，分配单独的cpu节点或者内存节点
@@ -75,8 +99,24 @@ IPC相关知识，请参考[Linux进程间通信](./Linux进程间通信.md)，*
 1. blkio子系统，限制块设备io
 1. devices子系统，控制进程访问某些设备
 1. net_cls子系统，标记网络数据包，然后可以使用tc模块traffic control对数据包进行控制
-1. freezer子系统，挂起或者恢复cgroups中的进程
-1. ns子系统，不同cgroups下面的进程使用不同的namespace
+1. freezer子系统，挂起或者恢复cgroup中的进程
+1. ns子系统，不同cgroup下面的进程使用不同的namespace
+
+### cgroup工具 ###
+- cgroup-bin工具集
+	- /usr/sbin/cgclear
+	- /usr/sbin/cgconfigparser
+	- /usr/sbin/cgrulesengd
+	- /usr/bin/cgcreate
+	- /usr/bin/cgclassify
+	- /usr/bin/cgdelete
+	- /usr/bin/cgexec
+	- /usr/bin/lscgroup
+	- /usr/bin/cgget
+	- /usr/bin/lssubsys
+	- /usr/bin/cgsnapshot
+	- /usr/bin/cgset
+
 
 ## AUFS层状文件系统 ##
 
