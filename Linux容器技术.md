@@ -148,25 +148,28 @@ IPC相关知识，请参考[Linux进程间通信](./Linux进程间通信.md)，*
 ### cgroup工具 ###
 - cgroup-bin工具集
 	- /usr/sbin/cgclear
+		- 删除层级树极其所有进程组
 	- /usr/sbin/cgconfigparser
+		- 解析cgconfig.conf文件和并挂载层级树
 	- /usr/sbin/cgrulesengd
 	- /usr/bin/cgcreate
-	- /usr/bin/cgclassify
-		- 将进程添加到进程组（例如，cgclassify -g subsystems:path_to_cgroup pidlist）
+		- 在包含指定子系统的层级树下创建进程组（例如 cgcreate -g cpu,cpuacct,memory 11111）
 	- /usr/bin/cgdelete
 		- 删除层级树下所有进程组（例如，cgdelete -r cpuset:/，删除cpuset子系统下所有进程组，但保留层级树及root进程组）
+	- /usr/bin/cgclassify
+		- 转移进程到其他进程组（例如，cgclassify -g subsystems:path_to_cgroup pidlist）
 	- /usr/bin/cgexec
 		- 直接在进程组中启动程序（例如，cgexec -g subsystems:path_to_cgroup command arguments，通常用于创建临时任务）
 	- /usr/bin/lscgroup
 		- 显示所有层级树的进程组列表，读取/sys/fs/cgroup下所有的目录，每个目录代表一个进程组
-	- /usr/bin/cgget
-		- 显示进程组信息（例如，cgget -g cpuset:/，等于读取/sys/fs/cgroup/cpuset下所有文件的内容)
 	- /usr/bin/lssubsys
-		- 显示所有子系统信息，-a支持的子系统，-m子系统挂载情况
+		- 显示所有子系统信息，如所在的层级树，-a支持的子系统，-m子系统挂载情况
 	- /usr/bin/cgsnapshot
+		- 根据当前cgroup情况生成cgconfig.conf文件内容（例如，cgsnapshot -b .）
 	- /usr/bin/cgset
 		- 设置进程组信息（例如，cgset -r cpuset.cpus=0-1 cpu,memory:/，也可以通过echo）
-
+	- /usr/bin/cgget
+		- 显示进程组信息（例如，cgget -g cpuset:/，等于读取/sys/fs/cgroup/cpuset下所有文件的内容)
 
 ## AUFS层状文件系统 ##
 
