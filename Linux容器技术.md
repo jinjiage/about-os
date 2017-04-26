@@ -104,29 +104,44 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 		[[ "$(bocker_check "$1")" == 1 ]] && echo "No image named '$1' exists" && exit 1
 		[[ "$(bocker_check "$uuid")" == 0 ]] && echo "UUID conflict, retrying..." && bocker_run "$@" && return
 		cmd="${@:2}" && ip="$(echo "${uuid: -3}" | sed 's/0//g')" && mac="${uuid: -3:1}:${uuid: -2}"
+		#创建虚拟网卡peer，参考虚拟网卡peer实现原理
 		ip link add dev veth0_"$uuid" type veth peer name veth1_"$uuid"
+        #激活虚拟网卡veth0_"$uuid"
 		ip link set dev veth0_"$uuid" up
+        #veth0_"$uuid"与网桥连接，源码中没有发现创建bridge0的地方，BUG？
 		ip link set veth0_"$uuid" master bridge0
+		#创建网络命名空间netns_"$uuid"
 		ip netns add netns_"$uuid"
+		#★虚拟网卡veth1_"$uuid"加入到netns_"$uuid"空间中
 		ip link set veth1_"$uuid" netns netns_"$uuid"
+        #创建虚拟网卡时，同时会创建回环lo，但出于非激活状态，因此这里激活一下
 		ip netns exec netns_"$uuid" ip link set dev lo up
+        #设置veth1_"$uuid"的mac地址
 		ip netns exec netns_"$uuid" ip link set veth1_"$uuid" address 02:42:ac:11:00"$mac"
+		#设置veth1_"$uuid"的ip地址
 		ip netns exec netns_"$uuid" ip addr add 10.0.0."$ip"/24 dev veth1_"$uuid"
+		#激活虚拟网卡veth1_"$uuid"
 		ip netns exec netns_"$uuid" ip link set dev veth1_"$uuid" up
+        #★添加路由
 		ip netns exec netns_"$uuid" ip route add default via 10.0.0.1
 		btrfs subvolume snapshot "$btrfs_path/$1" "$btrfs_path/$uuid" > /dev/null
+		#设置dns
 		echo 'nameserver 8.8.8.8' > "$btrfs_path/$uuid"/etc/resolv.conf
 		echo "$cmd" > "$btrfs_path/$uuid/$uuid.cmd"
 		cgcreate -g "$cgroups:/$uuid"
 		: "${BOCKER_CPU_SHARE:=512}" && cgset -r cpu.shares="$BOCKER_CPU_SHARE" "$uuid"
 		: "${BOCKER_MEM_LIMIT:=512}" && cgset -r memory.limit_in_bytes="$((BOCKER_MEM_LIMIT * 1000000))" "$uuid"
+		#cgexec命令，直接在cgroup进程组或层级树节点中启动任务
 		cgexec -g "$cgroups:$uuid" \
+            #★在进程组中激活网络命名空间netns_"$uuid"
 			ip netns exec netns_"$uuid" \
 			unshare -fmuip --mount-proc \
 			chroot "$btrfs_path/$uuid" \
 			/bin/sh -c "/bin/mount -t proc proc /proc && $cmd" \
 			2>&1 | tee "$btrfs_path/$uuid/$uuid.log" || true
+		#进程组外（即容器外）删除veth0_"$uuid"虚拟网卡，这里不应该删除吧？
 		ip link del dev veth0_"$uuid"
+		#进程组外（即容器外）删除netns_"$uuid"网络命名空间
 		ip netns del netns_"$uuid"
 	}
 	
