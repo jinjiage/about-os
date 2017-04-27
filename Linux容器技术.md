@@ -4,7 +4,7 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 ## Docker入门 - 基本命令与使用 ##
 - info
 
-![](doc/docker-info.png)
+	![](doc/docker-info.png)
 
 - version
 - attach
@@ -279,9 +279,8 @@ IPC相关知识，请参考[Linux进程间通信](./Linux进程间通信.md)，*
 
 #### cgroup文件系统 ####
 
-![](doc/proc_cgroup.PNG)
-
 - cgroup在proc中的信息：
+	![](doc/proc_cgroup.PNG)
 	- subsys_name子系统名称（cgroupsubsys.h中定义了所有subsystem子系统）；
 	- hierarchy，cgroup层级树id，如果多个子系统挂载在同个树，则id相同，但**一个子系统只能属于一个层级树**；（上图，cpu和cpuacct同为5，net_cls和net_prio同为6，说明两个子系统同时挂载在一个cgroup层级树上，也可以通过mount | grep cgroup或cat /proc/mounts查看子系统挂载情况）；
 		
@@ -293,9 +292,9 @@ IPC相关知识，请参考[Linux进程间通信](./Linux进程间通信.md)，*
 
 	- enabled，1代表启动子系统
 
-![](doc/mount_cgroup1.PNG)
-
 - /sys/fs/cgroup本身为tmpfs文件系统，下层目录挂载cgroup文件系统
+	
+	![](doc/mount_cgroup1.PNG)
 
 #### cgroup子系统 ####
 1. cpu子系统，限制进程的cpu使用率
