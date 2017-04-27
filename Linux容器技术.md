@@ -280,7 +280,9 @@ IPC相关知识，请参考[Linux进程间通信](./Linux进程间通信.md)，*
 #### cgroup文件系统 ####
 
 - cgroup在proc中的信息：
+
 	![](doc/proc_cgroup.PNG)
+
 	- subsys_name子系统名称（cgroupsubsys.h中定义了所有subsystem子系统）；
 	- hierarchy，cgroup层级树id，如果多个子系统挂载在同个树，则id相同，但**一个子系统只能属于一个层级树**；（上图，cpu和cpuacct同为5，net_cls和net_prio同为6，说明两个子系统同时挂载在一个cgroup层级树上，也可以通过mount | grep cgroup或cat /proc/mounts查看子系统挂载情况）；
 		
