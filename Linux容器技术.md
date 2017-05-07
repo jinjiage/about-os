@@ -224,7 +224,7 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 1. unshare() - 当前进程，创建并加入新的namwspace
 1. setns() - 当前进程加入已有namespace
 
-### namespaces命名空间 ###
+### namespaces命名空间 - 进程所看到的视图 ###
 ![](doc/proc_ns.png)
 
 1. UTS - CLONE_NEWUTS,命名空间间hostname主机名隔离,始于Linux2.4.19
@@ -264,7 +264,14 @@ IPC相关知识，请参考[Linux进程间通信](./Linux进程间通信.md)，*
 
 #### Network命名空间 ####
 
-### cgroup控制组 ###
+
+1. 主要提供了网络资源的隔离能力，包括网络设备、IPv4和IPv6协议栈、IP路由表、防火墙、/proc/net目录、/sys /class/net目录、端口（socket）等。
+
+1. 网络命名空间的主要应用场景包括：1、多个网络命名空间可以拥有eth0和lo等网络设备；2、多个Apache服务器进程可以在不 同网络命名空间的80端口上进行监听；3、一个进程不能嗅探其他网络命名空间的流量；4、一个进程不能关闭其他网络命名空间的接口。
+
+1. 后台进程可以运行在不同网络命名空间内的相同端口上，用户还可以自己虚拟出网卡。一个物理的网络设备最多存在于一个Network namespace中，你可以通过创建veth pair（虚拟网络设备对）在不同的Network namespace间创建通道进行通信。veth pair是用于不同Network namespace间进行通信的方式，veth pair将一个Network namespace数据发往另一个Network namespace的veth。
+
+### cgroup控制组 - 进程所能得到的资源 ###
 - cgroup有什么用？
 	- 限制进程组的资源数量（例如，memory子系统可以为进程组设定memory使用上限，一旦进程组使用的内存达到限额再申请内存，就会出发OOM）；
 	- 进程组的优先级控制（例如，可以使用cpu子系统为某个进程组分配特定cpu share）；
@@ -343,3 +350,5 @@ IPC相关知识，请参考[Linux进程间通信](./Linux进程间通信.md)，*
 1. hostname - uts工具
 1. ipcmk - ipc工具，用于创建共享内存、消息队列、信号量ipc资源
 1. ipcs - ipc工具，与ipcmk配套用于查询ipc资源
+2. iproute2工具
+3. mininet
