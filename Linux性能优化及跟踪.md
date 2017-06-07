@@ -86,6 +86,9 @@
 	3. [使用ftrace调试Linux内核](http://www.ibm.com/developerworks/cn/linux/l-cn-ftrace1/)
 	4. [Ftrace 实现原理与开发实践](http://tinylab.org/ftrace-principle-and-practice/?utm_source=tuicool&utm_medium=referral)
 
-### perf_events
+### perf
+
+1. 安装 
+  sudo apt-get install perf-tools-unstable linux-tools-$(uname -r) linux-cloud-tools-$(uname -r)
 
 ### 资料
