@@ -739,7 +739,6 @@
       </data>
     </edge>
     <edge id="e13" source="n0::n3" target="n2::n2::n1">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -750,7 +749,6 @@
       </data>
     </edge>
     <edge id="n2::e0" source="n2::n1::n3" target="n2::n2::n1">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -771,7 +769,6 @@
       </data>
     </edge>
     <edge id="e14" source="n1::n0" target="n0::n3">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -782,28 +779,26 @@
       </data>
     </edge>
     <edge id="n2::e1" source="n2::n1" target="n2::n0">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+          <y:Path sx="95.26174705615949" sy="-112.78212120068437" tx="0.0" ty="0.0">
             <y:Point x="371.0" y="-36.34313725490196"/>
           </y:Path>
           <y:LineStyle color="#000000" type="dashed" width="2.0"/>
-          <y:Arrows source="none" target="standard"/>
+          <y:Arrows source="standard" target="standard"/>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
       </data>
     </edge>
     <edge id="n2::e2" source="n2::n1" target="n2::n2">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+          <y:Path sx="-30.69155407105478" sy="-149.27326451791464" tx="0.0" ty="0.0">
             <y:Point x="585.9754901960785" y="-35.14215686274508"/>
           </y:Path>
           <y:LineStyle color="#000000" type="dashed" width="2.0"/>
-          <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="35.3125" x="46.91141278962539" y="-33.48768894570402">gt/gT<y:LabelModel>
+          <y:Arrows source="standard" target="standard"/>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="35.3125" x="139.4759879849379" y="-33.49818413155607">gt/gT<y:LabelModel>
               <y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/>
             </y:LabelModel>
             <y:ModelParameter>
