@@ -5,13 +5,13 @@
 ##qemu系统级仿真，仿真同构与非同构处理器及其他外部设备，运行完整的操作系统 
 ###PC体系结构介绍
 
-   ![PC体系结构](../doc/pc.gif)
+   ![PC体系结构](doc/pc.gif)
 
-   ![PC体系结构](../doc/pc.png)
+   ![PC体系结构](doc/pc.png)
 
-   ![PC体系结构](../doc/pc2.gif)
+   ![PC体系结构](doc/pc2.gif)
 
-   ![PC体系结构](../doc/pc2.png)
+   ![PC体系结构](doc/pc2.png)
 
 - CPU仿真
 
@@ -19,17 +19,17 @@
 
 - PC体系结构内存地址空间
 
-   ![MEM MAP](../doc/mem.jpg)
+   ![MEM MAP](doc/mem.jpg)
 
-   ![MMIO MAP](../doc/mmio.PNG) VM环境
+   ![MMIO MAP](doc/mmio.PNG) VM环境
 
-   ![MMIO MAP](../doc/iomem_REL.png) 真实机器
+   ![MMIO MAP](doc/iomem_REL.png) 真实机器
 
 - PC体系结构IO地址空间(64KB)
 
-   ![IO MAP](../doc/IO.PNG) VM环境
+   ![IO MAP](doc/IO.PNG) VM环境
 
-   ![IO MAP](../doc/IO_REL.png) 真实机器
+   ![IO MAP](doc/IO_REL.png) 真实机器
 
 端口方位|硬件|文件
 ------------- | ------------- | ------------- |
@@ -65,7 +65,7 @@ ACPI|APM_CNT_IOPORT（0xb2）,0xb100,0xafe0,0xae00,0xae08|(hw/acpi_piix4.c)
 						
 2. 初始化阶段
    
-	![](../doc/qemu_callgraph.svg)
+	![](doc/qemu_callgraph.svg)
 
 		global：init_type_list数组，共4个元素MODULE_INIT_BLOCK、MODULE_INIT_OPTS、MODULE_INIT_QAPI、MODULE_INIT_QOM，每个元素代表不同类型对象或模块，每个元素挂接一个队列，队列中存放不同具体模块（qemu是一个oop，任何东西都是模块，包括非设备、选项、块设备、...）的初始化函数
 		
