@@ -65,7 +65,7 @@ ACPI|APM_CNT_IOPORT（0xb2）,0xb100,0xafe0,0xae00,0xae08|(hw/acpi_piix4.c)
 						
 2. 初始化阶段
    
-	![](doc/qemu_callgraph.svg)
+	![](doc/qemu_callgraph.png)
 
 		global：init_type_list数组，共4个元素MODULE_INIT_BLOCK、MODULE_INIT_OPTS、MODULE_INIT_QAPI、MODULE_INIT_QOM，每个元素代表不同类型对象或模块，每个元素挂接一个队列，队列中存放不同具体模块（qemu是一个oop，任何东西都是模块，包括非设备、选项、块设备、...）的初始化函数
 		
