@@ -120,6 +120,8 @@ ACPI|APM_CNT_IOPORT（0xb2）,0xb100,0xafe0,0xae00,0xae08|(hw/acpi_piix4.c)
 
 3. 执行阶段
 
+	![](doc/qemu_thread.png)
+    
 		qemu_tcg_cpu_thread_fn，线程
 			|while(1)
 				|tcg_exec_all
