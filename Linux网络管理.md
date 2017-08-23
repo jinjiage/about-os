@@ -46,6 +46,20 @@
 
 ![](doc/net.png)
 
+## 网络虚拟化 ##
+### 网络命名空间，进程级资源隔离 ###
+> 一种轻量级进程虚拟化机制，而非像KVM、XEN一样的OS级别虚拟化解决方案
+	
+- net\_ns_init
+	- 系统默认init_net网络命名空间插入全局链表net_namespace_list尾部
+- copy\_net_ns
+	- net_alloc，创建新的网络命名空间net对象
+	- 插入全局链表net\_namespace_list尾部
+
+### cgroup，系统角度资源分配 ###
+- net_prio
+- cls_cgroup
+
 ## 网络设备 ##
 
 ### 网桥bridge ###
@@ -65,13 +79,6 @@
 - ieee802.3ad  4 动态链路聚合模式，需要交换机支持
 - mode-tlb  5 自适应模式
 - mode-alb  6 网卡虚拟化方式
-
-## 网络命名空间 ##
-- net_ns_init
-	- 系统默认init_net网络命名空间插入全局链表net_namespace_list尾部
-- copy_net_ns
-	- net_alloc，创建新的网络命名空间net对象
-	- 插入全局链表net_namespace_list尾部
 
 ## 网络IO模型及编程 ##
 - blocking 同步阻塞式I/O
