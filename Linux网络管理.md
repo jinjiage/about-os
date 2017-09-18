@@ -61,11 +61,29 @@
 - cls_cgroup
 
 ## 网络设备 ##
+### loopback回环设备 ###
+- loopback_net_init，入参为网络命名空间（struct net *net），每个net中都有一个lo设备对象指针(struct *net_device )，该函数就是为lo设备对象分配内存，并让net和net_device建立双向联系，所谓双向联系就是net_device.loopback_dev -> lo对象，lo对象.nd_net.net -> 入参net
+	- alloc_netdev，为“lo”网络设备分配内存，并设置setup安装函数，此处为loopback_setup
+		- loopback_setup，lo设备的安装函数，用于设置net_device中的众多features、及ops等
+			- dev->features = **NETIF_F_NETNS_LOCAL**，这类本地设备不能在不同的网络命名空间间转移，其他设备还有VXLAN，PPP，bridge设备，可以通过可以通过ethtool -k，或者ethtool --show-features查看该值
+			- dev->ethtool_ops	= &**loopback_ethtool_ops**; 支持ethtool工具ops，loopback_ethtool_ops中只包含.get_link=always_on，always_on永远返回1，除此之外没有其他函数
+			- dev->header_ops		= &eth_header_ops;
+			- dev->netdev_ops		= &**loopback_ops**; lo网络设备ops
+			- dev->destructor		= loopback_dev_free; 释放函数
+			- dev_net_set，建立（lo对象.nd_net.net -> 入参net）联系
+	- register_netdev，在net中注册设备对象
+		- dev->netdev_ops->ndo_init(dev)， 如果存在netdev_ops->ndo_init则调用；lo设备可以查看struct net_device_ops loopback_ops中的**loopback_dev_init**
+
+
+### e1000e网卡设备 ###
+- e1000_init_module
+	- pci_register_driver，注册pci驱动（pci_driver，e1000_driver)
 
 ### 网桥bridge ###
 
 ### 虚拟以太网卡veth ###
-
+- veth_init
+	- 
 ### TUN/TAP ###
 
 ### bonding ###
