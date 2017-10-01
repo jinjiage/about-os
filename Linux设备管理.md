@@ -3,14 +3,14 @@
 ## 块设备 ##
 ### loop循环设备 ###
 
-loop循环设备是一个可以回接普通文件或块设备文件的虚拟块设备，可以用于各种用途。
+loop循环设备是一个可以回接普通文件或块设备文件的**虚拟块设备**，所谓虚拟块设备，就是它具备块设备的很多特征，可以用于各种用途。
 
 - loop_init初始化,大致流程↓
 	- register\_blkdev(LOOP_MAJOR, "loop")，注册块设备，主设备号7
 	- loop_add添加loop设备
 		- 通过kzalloc，申请struct loop_device对象lo
 		- 设置lo对象，
-			- .lo_state,设置为Lo_unbound
+			- .lo_state,设置状态为Lo_unbound
 			- .tag_set.ops,设置blk_mq_ops为loop_mq_ops
 			- .lo_queue,调用blk_mq_init_queue创建request_queue队列同时设置队列处理函数
 		- alloc_disk，申请struct gendisk对象disk

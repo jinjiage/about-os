@@ -40,7 +40,19 @@ linux提供了open、read、write、mount等常见的文件系统相关的调用
 
 ## VFS虚拟文件系统 ##
 - 概念
-	- 文件系统类型结构filesystem
+	- 在内核中唯一标示一种文件系统，file\_system\_type
+		- name：文件系统名字，可以通过/proc/filesystems中查看已注册的文件系统
+		- fs_flags：文件系统类型
+			- FS\_REQUIRES\_DEV: 文件系统必须在物理设备上，cat /proc/filesystems可观察；
+			- FS\_BINARY_MOUNTDATA:
+			- FS\_HAS\_SUBTYPE: 文件系统含有子类型，最常见的就是FUSE，FUSE是用户态文件系统框架，所以要通过子文件系统类型来区别通过FUSE接口实现的不同文件系统；
+			- FS\_USERNS\_MOUNT: 文件系统每次挂载都后都是不同的user namespace，如用于devpts；
+			- FS\_USERNS\_DEV\_MOUNT: user namespace挂载支持MNT_DEV， 即非nodev模式。
+			- FS\_RENAME\_DOES\_D\_MOVE: 文件系统将把重命名操作reame()直接按照移动操作d_move()来处理，主要用于网络文件系统；
+		- mount：用户挂载此文件系统时使用的回调函数；
+		- kill\_sb: 删除内存中的super block，在卸载文件系统时使用；
+		- next: 指向文件系统类型链表的下一个文件系统类型；
+		- fs\_supers: 具有相同文件系统类型的超级块结构，即系统中可以有多个super\_block;
 	- 超级块结构super_block
 	- 索引节点结构inode
 	- 目录项结构dentry
@@ -54,51 +66,6 @@ linux提供了open、read、write、mount等常见的文件系统相关的调用
 	- kern_mount宏，很多内置文件系统通过该宏挂载
 		- vfs\_kern\_mount
 			- mount\_fs
-## ramfs文件系统 ##
-
-> 调用register_filesystem注册ramfs文件类型	
-
-	static struct file_system_type ramfs_fs_type = {
-		.name		= "ramfs",
-		.mount		= ramfs_mount,
-		.kill_sb	= ramfs_kill_sb,
-		.fs_flags	= FS_USERNS_MOUNT,
-	};
-
-## tmpfs文件系统 ##
-
-> 调用register_filesystem注册tmpfs文件类型	
-
-	static struct file_system_type shmem_fs_type = {
-		.owner		= THIS_MODULE,
-		.name		= "tmpfs",
-		.mount		= shmem_mount,
-		.kill_sb	= kill_litter_super,
-		.fs_flags	= FS_USERNS_MOUNT,
-	};
-
-## rootfs文件系统（ramfs、tmpfs） ##
-### 初始化 ###
-
-- init_rootfs
-
-> 调用register_filesystem注册rootfs文件类型		
-
-	static struct file_system_type rootfs_fs_type = {
-		.name		= "rootfs",
-		.mount		= rootfs_mount,
-		.kill_sb	= kill_litter_super,
-	};
-> rootfs\_mount->mount\_nodev
-
-## devtmpfs文件系统（ramfs、tmpfs） ##
-> 调用register_filesystem注册devtmpfs文件类型		
-
-	static struct file_system_type dev_fs_type = {
-		.name = "devtmpfs",
-		.mount = dev_mount,
-		.kill_sb = kill_litter_super,
-	};
 
 ## proc文件系统 ##
 ### 核心数据结构
