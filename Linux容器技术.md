@@ -4,26 +4,21 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 ![](doc/有关docker.png)
 
 ## Docker入门 - 基本命令与使用 ##
+
+子命令分类|子命令
+-----|-----
+docker环境信息|info、version
+容器生命周期管理|create、exec、kill、pause、restart、rm、run、start、stop、unpause
+镜像仓库命令|lgoin、logout、pull、push、search
+镜像管理|build、images、import、load、rmi、save、tag、commit
+容器运维操作|attrach、export、inspect、port、ps、rename、stats、top、wait、cp、diff、update
+容器资源管理|volume、network
+系统日志信息|events、history、logs
+
 - info
 
 	![](doc/docker-info.png)
 
-- version
-- attach
-- build
-- commit
-- cp
-- diff
-- export
-- images
-- import / save / load
-- inspect
-- kill
-- port
-- pause / unpause
-- ps
-- rm
-- rmi
 - run
 
 	![](doc/ifconfig.png)
@@ -48,14 +43,7 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 	   ![](doc/docker-bridge.png)
 	
 	* 虚拟网卡veth、网桥等网络设备原理与实现，请参考*[Linux网络管理](./Linux网络管理.md)
-- start / stop / restart
-- tag
-- top
-- wait
-- events
-- history
-- logs
-- login
+
 - pull / push
 
 		docker pull [选项] [Docker Registry地址]<仓库名>:<标签>
@@ -65,8 +53,6 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 		                 <用户名>/<软件名>,不指定用户名，默认为官网的library(例如ubuntu，实际指向library/ubuntu)
 		
 	![](doc/docker-pull.png)
-
-- search
 
 ## Docker进阶 - Docker源码分析 ##
 
