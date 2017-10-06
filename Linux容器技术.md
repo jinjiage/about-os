@@ -9,9 +9,9 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 -----|-----
 docker环境信息|info、version
 容器生命周期管理|create、exec、kill、pause、restart、rm、run、start、stop、unpause
-镜像仓库命令|lgoin、logout、pull、push、search
+镜像仓库命令|login、logout、pull、push、search
 镜像管理|build、images、import、load、rmi、save、tag、commit
-容器运维操作|attrach、export、inspect、port、ps、rename、stats、top、wait、cp、diff、update
+容器运维操作|attach、export、inspect、port、ps、rename、stats、top、wait、cp、diff、update
 容器资源管理|volume、network
 系统日志信息|events、history、logs
 
