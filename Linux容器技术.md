@@ -199,10 +199,10 @@ docker环境信息|info、version
 
 ## Docker高阶 - 原理与机制 ##
 - 系统调用
-- namespaces命名空间 - *基于进程，提供环境的隔离*
-- cgroups控制组 - *基于cgroup文件系统，提供资源的隔离*
-- 存储技术
-- 工具
+- namespaces - *基于进程，为每个容器提供资源隔离*
+- cgroups - *基于cgroup文件系统，为每个容器提供资源配额*
+- network网络管理
+- storge driver存储管理
 
 ### 系统调用 ###
 1. clone() - 创建进程，涉及进程管理知识请参考[Linux进程管理](Linux进程管理.md),与namespace相关部分，参考如下：
@@ -259,7 +259,7 @@ IPC相关知识，请参考[Linux进程间通信](./Linux进程间通信.md)，*
 
 1. 后台进程可以运行在不同网络命名空间内的相同端口上，用户还可以自己虚拟出网卡。一个物理的网络设备最多存在于一个Network namespace中，你可以通过创建veth pair（虚拟网络设备对）在不同的Network namespace间创建通道进行通信。veth pair是用于不同Network namespace间进行通信的方式，veth pair将一个Network namespace数据发往另一个Network namespace的veth。
 
-### cgroup控制组 - 进程所能得到的资源 ###
+### cgroups - 进程所能得到的资源配额 ###
 - cgroup有什么用？
 	- 限制进程组的资源数量（例如，memory子系统可以为进程组设定memory使用上限，一旦进程组使用的内存达到限额再申请内存，就会出发OOM）；
 	- 进程组的优先级控制（例如，可以使用cpu子系统为某个进程组分配特定cpu share）；
@@ -330,7 +330,9 @@ IPC相关知识，请参考[Linux进程间通信](./Linux进程间通信.md)，*
 	- /usr/bin/cgget
 		- 显示进程组信息（例如，cgget -g cpuset:/，等于读取/sys/fs/cgroup/cpuset下所有文件的内容)
 
-## 存储技术 ##
+## network网络管理 ##
+
+## storge driver存储管理 ##
 
 ## 工具部分 ##
 1. unshare
