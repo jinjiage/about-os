@@ -211,6 +211,7 @@ docker环境信息|info、version
 
 1. unshare() - 当前进程，创建并加入新的namwspace
 1. setns() - 当前进程加入已有namespace
+2. mount() - mount过程比较复杂且涉及文件系统的知识，这里不再累赘，详细内容请参考[Linux文件系统](Linux文件系统.md)
 
 ### namespaces命名空间 - 进程所看到的视图 ###
 ![](doc/proc_ns.png)
