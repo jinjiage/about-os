@@ -8,13 +8,7 @@
 	文件 虚拟：            VFS虚拟文件系统
          -------------------------------------------------------    
     系统 具体： procfs/sysfs(特殊文件)   sockfs   Ext2/3(普通文件) 
-	-----------------|--------------------|-----------|-----------------
-                                       网络协议    通用块层
-		                                          IO调度层           
-                                       网卡驱动    块设备驱动
-	-----------------|--------------------|------------|----------------
-    硬件          内    存              网   卡  硬盘及其他存储块设备
-	------------------------------------------------------------
+
 	linux的文件系统处于系统调用层和块I/O子系统之间，包含VFS虚拟文件系统和具体文件系统两部分：
     1、VFS是上层应用和具体文件系统之间的接口层，被称为虚拟文件系统，也称为虚拟文件系统交换层（Virtual Filesystem Switch），它为应用程序员提供一层抽象，屏蔽底层各种具体文件系统的差异；它将各种具体文件系统的操作和管理内入统一的框架；
 	2、具体文件系统有procfs、sysyfs、sockfs、Ext2/3/4等，不同文件系统有各自的应用场景，以模块的形式向VFS注册回调函数；
@@ -54,8 +48,8 @@ linux提供了open、read、write、mount等常见的文件系统相关的调用
 		- next: 指向文件系统类型链表的下一个文件系统类型；
 		- fs\_supers: 具有相同文件系统类型的超级块结构，即系统中可以有多个super\_block;
 	- 超级块结构super_block
-	- 索引节点结构inode
-	- 目录项结构dentry
+	- 索引节点对象inode及操作对象inode_operations
+	- 目录项对象dentry及操作对象dentry_operations
 	- 文件结构file
 	- 挂载点结构vfsmount
 
@@ -86,10 +80,15 @@ linux提供了open、read、write、mount等常见的文件系统相关的调用
 	    	.name		= "/proc",
     	};
 
-- static const struct file\_operations proc\_reg\_file\_ops
-- static const struct inode\_operations proc\_root\_inode\_operations
-- struct proc\_dir\_entry proc_root
-- static struct file\_system\_type proc\_fs\_type
+- static const struct dentry\_operations proc\_sys\_dentry\_operations;
+
+- static const struct file\_operations proc\_sys\_file\_operations;
+
+- static const struct inode\_operations proc\_sys\_inode\_operations;
+
+- static const struct file\_operations proc\_sys\_dir\_file\_operations;
+
+- static const struct inode\_operations proc\_sys\_dir\_operations;
 
 ### 核心函数 ###
 - proc\_root\_init函数，初始化
@@ -114,6 +113,12 @@ linux提供了open、read、write、mount等常见的文件系统相关的调用
 ### 初始化 ###
 
 - sysfs_init
+
+## udev文件系统 ##
+### 初始化 ###
+
+## docker aufs联合文件系统 ##
+### 初始化 ###
 
 ### 注册 ###
 

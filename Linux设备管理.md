@@ -25,7 +25,6 @@ loop循环设备是一个可以回接普通文件或块设备文件的**虚拟�
 		- bdgrab，/dev相关
 	- LOOP\_CHANGE\_FD命令 =====> loop\_change\_fd，打开loop设备
 		- loop_switch
-			- 回接块设备
 			- 回接普通文件
 
 ## FIFO ##
