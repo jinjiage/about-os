@@ -1,17 +1,4 @@
 # Linux文件系统 #
-                     App    App     App    App
-    ------------------|-----------------------------------------    
-                      |    C标准库(Libc)
-	------------------|-----------------------------------------    用户空间
-		                   系统调用层
-	------------------------------------------------------------    内核空间
-	文件 虚拟：            VFS虚拟文件系统
-         -------------------------------------------------------    
-    系统 具体： procfs/sysfs(特殊文件)   sockfs   Ext2/3(普通文件) 
-
-	linux的文件系统处于系统调用层和块I/O子系统之间，包含VFS虚拟文件系统和具体文件系统两部分：
-    1、VFS是上层应用和具体文件系统之间的接口层，被称为虚拟文件系统，也称为虚拟文件系统交换层（Virtual Filesystem Switch），它为应用程序员提供一层抽象，屏蔽底层各种具体文件系统的差异；它将各种具体文件系统的操作和管理内入统一的框架；
-	2、具体文件系统有procfs、sysyfs、sockfs、Ext2/3/4等，不同文件系统有各自的应用场景，以模块的形式向VFS注册回调函数；
 
 
 ## 系统调用层 ##
@@ -63,7 +50,7 @@ linux提供了open、read、write、mount等常见的文件系统相关的调用
 
 ## proc文件系统 ##
 ### 核心数据结构
-- struct proc\_dir\_entry代表目录和文件
+- struct proc\_dir\_entry
 
 	在proc文件系统中，由proc\_dir\_entry代表目录，而/proc目录比较特殊，该目录下有一些“数字”代表进程的PID，而其他proc\_dir\_entry由proc_mkdir函数创建
 
@@ -91,9 +78,9 @@ linux提供了open、read、write、mount等常见的文件系统相关的调用
 - static const struct inode\_operations proc\_sys\_dir\_operations;
 
 ### 核心函数 ###
-- proc\_root\_init函数，初始化
-	1. 调用proc\_init\_inodecache创建inode缓存
-	2. 调用register\_filesystem注册文件系统proc\_fs_type
+- proc\_root\_init函数，注册proc文件系统及创建部分/proc顶层目录和文件
+	- 调用proc\_init\_inodecache创建proc专用inode缓存
+	- 调用register\_filesystem注册文件系统proc\_fs_type
 
 			static struct file_system_type proc_fs_type = {
 	    		.name		= "proc",
@@ -101,13 +88,20 @@ linux提供了open、read、write、mount等常见的文件系统相关的调用
 	    		.kill_sb	= proc_kill_sb,
 	    		.fs_flags	= FS_USERNS_MOUNT,
 	    	};
-
-- proc_mkdir函数，用于创建目录
-- proc_create函数，用于创建文件
-
-> 调用register_filesystem注册proc文件类型		
-
-
+	- proc\_self_init
+		- proc\_alloc\_inum(&self_inum);从proc\_inum\_ida(基于idr一种快速查找数据结构对象的技术，proc\_inum\_ida是其中的一个layer)中分配一个i，加上PROC\_DYNAMIC\_FIRST基址后赋给self\_inum,后续作为/proc/self的inode的id
+	- proc_thread_self_init，同上，赋给thread\_self\_inum
+	- proc_symlink
+	- proc\_net_init
+	- proc_mkdir
+	- proc\_tty_init
+	- proc\_sys_init
+- proc_mount挂载函数
+	- proc\_fill_super
+		- root\_inode = proc\_get_inode(s, &proc\_root);**申请proc文件系统的根目录inode对象，同时安装inode\_operations proc\_root\_inode\_operations和file\_operations proc\_root\_operations**
+- proc\_root\_lookup函数，**根目录inode\_operations proc\_root\_inode\_operations的.lookup函数，下面选择其一**
+	- proc\_pid\_lookup
+	- proc\_lookup
 
 ## sysfs文件系统 ##
 ### 初始化 ###
