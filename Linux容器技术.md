@@ -207,7 +207,7 @@ docker环境信息|info、version
 ### 系统调用 ###
 1. clone() - 创建进程，涉及进程管理知识请参考[Linux进程管理](Linux进程管理.md),与namespace相关部分，参考如下：
 
-    ![](doc/clone-namespace.jpg)
+    ![](doc/do_fork.png)
 
 1. unshare() - 当前进程，创建并加入新的namwspace
 1. setns() - 当前进程加入已有namespace
