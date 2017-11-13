@@ -1,5 +1,30 @@
 # Linux文件系统 #
 
+1. **Linux中一切皆文件**。文件在linux中是个比较宽泛而且重要的概念，除了普通的存储在磁盘设备中的常规文件外，还包括一些特殊文件，如设备文件、fifo管道文件、sock文件、符号链接文件等。只有完全掌握了文件系统的知识，才能说在一定程度上linux入门了。
+
+1. **文件系统中的概念**有：文件系统类型（file\_system\_type）、超级块（super\_block）、信息节点(inode)、目录项（dentry）、文件（File）、挂载点（mount）。
+	- **file\_system\_type**，内核中**唯一标示一类文件系统**
+		- name：文件系统的名字，不能重复，可以通过/proc/filesystems（底层调用file\_operations filesystems\_proc\_fops filesystems\_proc\_open.open= filesystems\_proc\_open）中查看已注册的文件系统；
+		- fs_flags：文件系统标记
+			- FS\_REQUIRES\_DEV: 指示文件系统必须在物理设备上，cat /proc/filesystems可观察，前面带有“nodev”都不含FS\_REQUIRES\_DEV，表示非设备文件系统；
+			- FS\_BINARY_MOUNTDATA:？
+			- FS\_HAS\_SUBTYPE: 文件系统含有子类型，最常见的就是FUSE，FUSE是用户态文件系统框架，所以要通过子文件系统类型来区别通过FUSE接口实现的不同文件系统；
+			- FS\_USERNS\_MOUNT: 文件系统每次挂载都后都是不同的user namespace，如用于devpts；
+			- FS\_USERNS\_DEV\_MOUNT: user namespace挂载支持MNT_DEV， 即非nodev模式。
+			- FS\_RENAME\_DOES\_D\_MOVE: 文件系统将把重命名操作reame()直接按照移动操作d_move()来处理，主要用于网络文件系统；
+		- mount：用户挂载此文件系统时使用的回调函数；
+		- kill\_sb: 删除内存中的super block，在卸载文件系统时使用；
+		- next: 指向文件系统类型链表的下一个文件系统类型，注册文件系统函数register\_filesystem会遍历该链表；
+		- fs\_supers: 具有相同文件系统类型的超级块结构，即系统中可以有多个super\_block;
+	- 超级块结构super_block
+	- 索引节点对象inode及操作对象inode_operations
+	- 目录项对象dentry及操作对象dentry_operations
+	- 文件结构file
+	- 挂载点结构vfsmount
+
+1. **通常注册文件系统和挂载文件系统是分离的**。注册文件系统指在内核中加入新的文件系统类型（全局file_systems），而挂载是创建具体的实例及相应的超级块。举例：
+	1. proc\_root\_init->register\_filesystem(&proc\_fs\_type);
+	2. mount系统调用：do\_mount->do\_new\_mount->vfs\_kern\_mount->mount\_fs->file\_system\_type.mount
 
 ## 系统调用层 ##
 linux提供了open、read、write、mount等常见的文件系统相关的调用接口,还有一些专用的系统调用，例如sockfs文件系统的socket、bind
@@ -20,26 +45,6 @@ linux提供了open、read、write、mount等常见的文件系统相关的调用
 					- vfs\_kern\_mount，通过file\_system_type和文件系统名称返回vfsmount挂载点
 
 ## VFS虚拟文件系统 ##
-- 概念
-	- 在内核中唯一标示一种文件系统，file\_system\_type
-		- name：文件系统名字，可以通过/proc/filesystems中查看已注册的文件系统
-		- fs_flags：文件系统类型
-			- FS\_REQUIRES\_DEV: 文件系统必须在物理设备上，cat /proc/filesystems可观察；
-			- FS\_BINARY_MOUNTDATA:
-			- FS\_HAS\_SUBTYPE: 文件系统含有子类型，最常见的就是FUSE，FUSE是用户态文件系统框架，所以要通过子文件系统类型来区别通过FUSE接口实现的不同文件系统；
-			- FS\_USERNS\_MOUNT: 文件系统每次挂载都后都是不同的user namespace，如用于devpts；
-			- FS\_USERNS\_DEV\_MOUNT: user namespace挂载支持MNT_DEV， 即非nodev模式。
-			- FS\_RENAME\_DOES\_D\_MOVE: 文件系统将把重命名操作reame()直接按照移动操作d_move()来处理，主要用于网络文件系统；
-		- mount：用户挂载此文件系统时使用的回调函数；
-		- kill\_sb: 删除内存中的super block，在卸载文件系统时使用；
-		- next: 指向文件系统类型链表的下一个文件系统类型；
-		- fs\_supers: 具有相同文件系统类型的超级块结构，即系统中可以有多个super\_block;
-	- 超级块结构super_block
-	- 索引节点对象inode及操作对象inode_operations
-	- 目录项对象dentry及操作对象dentry_operations
-	- 文件结构file
-	- 挂载点结构vfsmount
-
 - 核心函数
 	- vfs\_caches\_init，为文件系统准备缓存，参考《文件系统初始化流程》
 	- register\_filesystem，注册文件系统，本质上把预定义的file\_system\_type类型变量放到全局变量file_systems中
