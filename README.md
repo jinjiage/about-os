@@ -1,3 +1,10 @@
 # about-os个人学习笔记
 ![linux kernel map](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Linux_kernel_map.png/800px-Linux_kernel_map.png)
 ![linux storage stack diagram](https://upload.wikimedia.org/wikipedia/commons/3/30/IO_stack_of_the_Linux_kernel.svg)
+![linux perf tools](http://www.brendangregg.com/Perf/linux_perf_tools_full.png)
+![linux observability tools](http://www.brendangregg.com/Perf/linux_observability_tools.png)
+![linux static tools](http://www.brendangregg.com/Perf/linux_static_tools.png)
+![linux benchmarking tools](http://www.brendangregg.com/Perf/linux_benchmarking_tools.png)
+![linux observability sar](http://www.brendangregg.com/Perf/linux_observability_sar.png)
+![perf tools](http://www.brendangregg.com/Perf/perf-tools_2016.png)
+![bcc tracing tools](http://www.brendangregg.com/Perf/bcc_tracing_tools.png)
