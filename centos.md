@@ -1,4 +1,23 @@
 # centos #
+
+## centos6.5 minimal 基本环境配置 ##
+1. 启动网卡
+	1. vi /etc/sysconfig/network-scripts/ifcfg-eth0 ONBOOT=no 改为 yes
+	1. service network restart 重启网络
+1. 配置sshd
+	1. 在/etc/hosts.deny和/etc/hosts.allow加上sshd:ALL
+	2. service sshd restart
+1. 关闭selinux
+	1. vi /etc/selinux/config，SELINUX=enforcing改成SELINUX=disabled
+	2. reboot
+1. 配置yum源
+	1. yum -y install wget
+	2. cd /etc/yum.repos.d/
+	3. wget http://mirrors.163.com/.help/CentOS6-Base-163.repo
+	4. yum clean all
+	5. yum makecache
+	6. yum update
+
 ## 有关yum ##
 - yum repolist
 	
