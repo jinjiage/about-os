@@ -45,6 +45,13 @@
 5. ./configure
 6. make && make install
 
+## 升级docker最新版
+1. yum install docker-io #epel库，最新版本docker-1.7
+1. curl -sSL -O https://get.docker.com/builds/Linux/x86_64/docker-1.9.1 #继续升级到docker-1.9
+1. chmod +x docker-1.9.1 
+1. mv /usr/bin/docker /usr/bin/docker-1.7
+1. cp ./docker-1.9.1 /usr/bin/docker
+1. /etc/init.d/docker restart
 
 ## 升级内核(源码升级)
 
