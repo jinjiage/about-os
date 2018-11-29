@@ -13,10 +13,14 @@ uname -r
 ## 设置apt源
 添加/etc/apt/sources.list
 
-	deb http://mirrors.163.com/debian/ stretch main contrib non-free
-	deb http://mirrors.163.com/debian/ stretch-updates main contrib non-free
-	deb http://mirrors.163.com/debian-security/ stretch/updates main contrib non-free
-	deb http://mirrors.163/com/debian/ stretch-proposed-updates main contrib non-free
+	deb http://mirrors.163.com/debian/ stretch main non-free contrib
+	deb http://mirrors.163.com/debian/ stretch-updates main non-free contrib
+	deb http://mirrors.163.com/debian/ stretch-backports main non-free contrib
+	deb-src http://mirrors.163.com/debian/ stretch main non-free contrib
+	deb-src http://mirrors.163.com/debian/ stretch-updates main non-free contrib
+	deb-src http://mirrors.163.com/debian/ stretch-backports main non-free contrib
+	deb http://mirrors.163.com/debian-security/ stretch/updates main non-free contrib
+	deb-src http://mirrors.163.com/debian-security/ stretch/updates main non-free contrib
 
 ## 设置中文界面及输入法
 1. aptitude install locales
