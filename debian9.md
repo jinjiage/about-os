@@ -31,11 +31,8 @@ uname -r
 	apt-get install xfonts-wqy
 	apt-get install ttf-wqy-zenhei
 
-## 安装输入法
-	apt-get install scim 
-	apt-get install scim-chinese 
-	apt-get install scim-pinyin
-	apt-get install ibus-table-wubi 
+## 安装输入法，详细参考http://wiki.ubuntu.org.cn/IBus
+	apt-get install ibus ibus-sunpinyin
 
 ## 安装C语言开发包
 	apt-get install build-essential
