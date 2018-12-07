@@ -340,13 +340,13 @@ IPC相关知识，请参考[Linux进程间通信](./Linux进程间通信.md)，*
 
 ## 工具部分 ##
 ### docker三剑客 ###
-#### [docker machine](https://docs.docker.com/machine/overview/) ####
-docker machine用于管理运行docker的主机，对于macos和windows操作系统来说，为了部署docker(deamon+client)还要创建虚拟主机host，因为这些系统原生不支持docker
+#### docker machine - [文档](https://docs.docker.com/machine/overview/)、[Github](https://github.com/docker/machine)####
+> docker machine用于管理运行docker的主机，对于macos和windows操作系统来说，为了部署docker(deamon+client)还要创建虚拟主机host，因为这些系统原生不支持docker。这里借用Windows Containers(Windows Server 2016已支持)/Hyper-V Containers(Windows 10)来说明linux/macos/windows运行容器的区别。
 
-![](doc/windows_container.jpg)
+![](doc/windows-container-1.png)
 
-#### [docker swarm](https://docs.docker.com/swarm/overview/) ####
-#### [docker compose](https://docs.docker.com/compose/overview/) ####
+#### docker swarm - [文档](https://docs.docker.com/swarm/overview/)、[Github](https://github.com/docker/swarm) ####
+#### docker compose - [文档](https://docs.docker.com/compose/overview/)、 [Github](https://github.com/docker/compose)####
 ### 其他工具 ###
 1. unshare
 1. nsenter
