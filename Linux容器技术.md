@@ -340,13 +340,24 @@ IPC相关知识，请参考[Linux进程间通信](./Linux进程间通信.md)，*
 
 ## 工具部分 ##
 ### docker三剑客 ###
-#### docker machine - [文档](https://docs.docker.com/machine/overview/)、[Github](https://github.com/docker/machine)####
-> docker machine用于管理运行docker的主机，对于macos和windows操作系统来说，为了部署docker(deamon+client)还要创建虚拟主机host，因为这些系统原生不支持docker。这里借用Windows Containers(Windows Server 2016已支持)/Hyper-V Containers(Windows 10)来说明linux/macos/windows运行容器的区别。
+> docker三剑客包含docker machine、docker swarm、docker compose分别用于主机管理、集群管理、容器编排，为容器的分布式应用提供了简单解决方案。
+
+![](doc/docker-tools.png)
+
+#### docker machine - [Doc](https://docs.docker.com/machine/overview/)、[Github](https://github.com/docker/machine)####
+> docker machine用于管理运行docker的主机，对于macos和windows操作系统来说，为了部署docker(deamon+client)还要创建虚拟主机host，因为这些系统原生不支持docker。这里借用Windows Containers[Docker Engine on Windows这篇文章](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-docker/configure-docker-daemon),(Windows Server 2016已支持)/Hyper-V Containers(Windows 10)来说明linux/macos/windows运行容器的区别。
 
 ![](doc/windows-container-1.png)
 
-#### docker swarm - [文档](https://docs.docker.com/swarm/overview/)、[Github](https://github.com/docker/swarm) ####
-#### docker compose - [文档](https://docs.docker.com/compose/overview/)、 [Github](https://github.com/docker/compose)####
+*Windows Server 2016下的Windows Container其实跟Linux Container类似都是原生支持,等同于Linux Host + docker + App*
+
+*Windows 10下的Windows Container需要Hyper-V VM支持同时每个container需要安装windows的基本内核镜像，等同于Linux Host + KVM/XEN + Linux Guest + App*
+
+
+#### docker swarm - [Doc](https://docs.docker.com/swarm/overview/)、[Github](https://github.com/docker/swarm) ####
+> docker swarm通过把多个docker engine聚集在一起，形成一个大的docker engine，对外提供容器的集群服务，同时这个集群对外提供swarm API，用户可以像使用docker engine一样使用docker集群。
+
+#### docker compose - [Doc](https://docs.docker.com/compose/overview/)、 [Github](https://github.com/docker/compose) ####
 ### 其他工具 ###
 1. unshare
 1. nsenter
