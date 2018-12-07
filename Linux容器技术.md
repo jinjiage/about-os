@@ -344,7 +344,7 @@ IPC相关知识，请参考[Linux进程间通信](./Linux进程间通信.md)，*
 
 ![](doc/docker-tools.png)
 
-#### docker machine - [Doc](https://docs.docker.com/machine/overview/)、[Github](https://github.com/docker/machine)####
+#### docker machine - [Doc](https://docs.docker.com/machine/overview/)、[Github](https://github.com/docker/machine) ####
 > docker machine用于管理运行docker的主机，对于macos和windows操作系统来说，为了部署docker(deamon+client)还要创建虚拟主机host，因为这些系统原生不支持docker。这里借用Windows Containers[Docker Engine on Windows这篇文章](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-docker/configure-docker-daemon),(Windows Server 2016已支持)/Hyper-V Containers(Windows 10)来说明linux/macos/windows运行容器的区别。
 
 ![](doc/windows-container-1.png)
