@@ -339,10 +339,19 @@ IPC相关知识，请参考[Linux进程间通信](./Linux进程间通信.md)，*
 ## storge driver存储管理 ##
 
 ## 工具部分 ##
+### docker三剑客 ###
+#### [docker machine](https://docs.docker.com/machine/overview/) ####
+docker machine用于管理运行docker的主机，对于macos和windows操作系统来说，为了部署docker(deamon+client)还要创建虚拟主机host，因为这些系统原生不支持docker
+
+![](doc/windows_container.jpg)
+
+#### [docker swarm](https://docs.docker.com/swarm/overview/) ####
+#### [docker compose](https://docs.docker.com/compose/overview/) ####
+### 其他工具 ###
 1. unshare
 1. nsenter
 1. hostname - uts工具
 1. ipcmk - ipc工具，用于创建共享内存、消息队列、信号量ipc资源
 1. ipcs - ipc工具，与ipcmk配套用于查询ipc资源
-2. iproute2工具
-3. mininet
+1. iproute2工具
+1. mininet
