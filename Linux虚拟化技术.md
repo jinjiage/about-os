@@ -3,7 +3,7 @@
 ## qemu/kvm in vbox ##
 > 新版vbox已经支持嵌套虚拟化
 
-![](doc/vbox5.PNG)
+![](doc/vbox5.png)
 
 > qemu/kvm in vbox
 
