@@ -9,5 +9,5 @@
 
 ![](doc/kvm_in_vbox.PNG)
 
-## KVM常用命令，可参考[文章](https://blog.csdn.net/u010281503/article/details/78152189)##
+## KVM安装与使用，可参考这两篇文章：[文章一](https://linux.cn/article-9522-1.html)、[文章二](https://blog.csdn.net/u010281503/article/details/78152189)##
 ## KVM关键技术 ##
