@@ -64,10 +64,10 @@
 ![](doc/fdisk19.PNG)
 
 1. lvresize，设备层逻辑卷home缩容为512G
-![](doc/fdisk20.png)
+![](doc/fdisk20.PNG)
 
 1. lvextend，设备层逻辑卷root扩容
-![](doc/fdisk21.png)
+![](doc/fdisk21.PNG)
 
 1. resize2fs filesystem，文件系统层root调整大小并挂载
-![](doc/fdisk22.png)
+![](doc/fdisk22.PNG)
