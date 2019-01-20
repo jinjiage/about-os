@@ -41,6 +41,11 @@ uname -r
 	apt-get install build-essential
 
 ## 安装docker及工具
-1. wget -qO- https://get.docker.com | sh #curl -fsSL https://get.docker.com/ | sh 或 curl -sSL https://get.daocloud.io/docker | sh
-2. apt-get install docker-compose
+- debian(stretch)
+	1. wget -qO- https://get.docker.com | sh #curl -fsSL https://get.docker.com/ | sh 或 curl -sSL https://get.daocloud.io/docker | sh
+	2. apt-get install docker-compose
 
+- ubuntu(bionic)
+	1. echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" > /etc/apt/source.list.d/docker.list
+	2. curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+	3. sudo apt-get install docker-ce
