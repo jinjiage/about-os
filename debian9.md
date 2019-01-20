@@ -52,6 +52,15 @@ uname -r
 ## 安装C语言开发包
 	apt-get install build-essential
 
+## 安装scode
+ 	add-apt-repository ppa:ubuntu-desktop/ubuntu-make
+    apt-get update
+    apt-get install ubuntu-make
+    umake ide visual-studio-code
+
+##  安装chromium浏览器
+	apt-get install chromium-browser
+
 ## 安装docker及工具
 - debian(stretch)
 	1. wget -qO- https://get.docker.com | sh #curl -fsSL https://get.docker.com/ | sh 或 curl -sSL https://get.daocloud.io/docker | sh
