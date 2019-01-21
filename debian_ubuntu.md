@@ -52,7 +52,15 @@ uname -r
 ## 安装C语言开发包
 	apt-get install build-essential
 
-## 安装scode
+## 设置pip源
+	~/.pip/pip.conf
+	[global]
+	timeout = 6000
+	index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+	trusted-host = pypi.tuna.tsinghua.edu.cn
+
+
+## 安装vscode
  	add-apt-repository ppa:ubuntu-desktop/ubuntu-make
     apt-get update
     apt-get install ubuntu-make
