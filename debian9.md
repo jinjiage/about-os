@@ -10,6 +10,8 @@ uname -r
 	apt-get install xfce4 xfce4-goodies #xfce4-goodies包含了很多xfce4-*的包
 	update-alternatives --config x-session-manager #切换界面
 
+## [安装图形界面及xrdp远程登陆](http://c-nergy.be/blog/?p=5874)
+
 ## 设置apt源
 添加/etc/apt/sources.list
 
@@ -54,5 +56,17 @@ source ~/.zshrc
 	apt-get install build-essential
 
 ## 安装docker及工具
-1. wget -qO- https://get.docker.com | sh #curl -fsSL https://get.docker.com/ | sh 或 curl -sSL https://get.daocloud.io/docker | sh
-2. apt-get install docker-compose
+	curl -sSL https://get.daocloud.io/docker
+	apt-get install libssl-dev #如果出现curl ssl错误，可能要升级一下nss库
+	apt-get install libcurl4-openssl-dev #如果数显Tls错误，可能要升级一下gnutls
+
+    --------------------如果以上方法不行，请尝试以下方法-----------------------
+	apt-get -y remove docker docker-engine docker.io
+	apt-get update
+	apt-get install -y apt-transport-https ca-certificates wget software-properties-common
+	wget https://download.docker.com/linux/debian/gpg 
+	apt-key add gpg
+	echo "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | tee -a /etc/apt/sources.list.d/docker.list
+	apt-get update
+	apt-cache policy docker-ce
+	apt-get -y install docker-ce

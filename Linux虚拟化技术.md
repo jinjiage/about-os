@@ -1,6 +1,8 @@
 # Linux虚拟化技术 #
 
 ## qemu/kvm in vbox ##
+> dism.exe /Online /Disable-Feature:Microsoft-Hyper-V
+> bcdedit /set hypervisorlaunchtype off 
 > 新版vbox已经支持嵌套虚拟化
 
 ![](doc/vbox5.png)

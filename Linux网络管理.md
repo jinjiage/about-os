@@ -92,7 +92,6 @@
 	- register_netdev，在net中注册设备对象
 		- dev->netdev_ops->ndo_init(dev)， 如果存在netdev_ops->ndo_init则调用；lo设备可以查看struct net_device_ops loopback_ops中的**loopback_dev_init**
 
-
 ### e1000e网卡设备 ###
 - e1000_init_module
 	- pci_register_driver，注册pci驱动（pci_driver，e1000_driver)
@@ -115,6 +114,23 @@
 - ieee802.3ad  4 动态链路聚合模式，需要交换机支持
 - mode-tlb  5 自适应模式
 - mode-alb  6 网卡虚拟化方式
+
+### openvswitch中的虚拟网络设备 ###
+    #centos6.5
+	yum install wget openssl-devel
+	yum groupinstall "Development Tools"
+
+	wget http://openvswitch.org/releases/openvswitch-2.5.6.tar.gz
+	tar xvfz openvswitch-2.5.6.tar.gz
+	cd openvswitch-2.5.6
+	mkdir -p /root/rpmbuild/SOURCES/
+	cp ../openvswitch-2.5.6.tar.gz /root/rpmbuild/SOURCES/
+	cp rhel/openvswitch-kmod.files /root/rpmbuild/SOURCES/
+	rpmbuild -bb rhel/openvswitch.spec
+	rpmbuild -bb rhel/openvswitch-kmod-rhel6.spec
+
+	yum localinstall /home/ovswitch/rpmbuild/RPMS/x86_64/kmod-openvswitch-1.9.3-1.el6.x86_64.rpm
+	yum localinstall /home/ovswitch/rpmbuild/RPMS/x86_64openvswitch-1.9.3-1.x86_64.rpm
 
 ## 网络IO模型及编程 ##
 - blocking 同步阻塞式I/O
