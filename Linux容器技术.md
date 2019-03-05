@@ -3,13 +3,13 @@ Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依�
 
 ## 图解Docker
 
-<details><summary>docker架构图</summary>
+<details><summary>Docker架构图</summary>
 
 ![](doc/docker.jpg)
 
 </details>
 
-<details><summary>docker思维导图</summary>
+<details><summary>Docker思维导图</summary>
 
 ![](doc/有关docker.png)
 
@@ -30,7 +30,7 @@ docker环境信息|info、version
 
   <details><summary>info</summary>
 
-	![](doc/docker-info.png)
+![](doc/docker-info.png)
 
 </details>
 
@@ -73,11 +73,9 @@ docker run创建Docker容器时，--net选项指定容器网络模式，Docker�
 
 </details>
 
-## Docker进阶 - Docker源码分析 ##
+## Docker源码分析 ##
 
-### Docker源码分析 ####
-
-### Bocker，shell版容器 ###
+### 一个用shell脚本实现的简化版Docker - Bocker（预热） ###
 	
 *100行左右实现docker基本功能，通过分析Bocker，我想说明容器是多种新老技术的综合运用*
 
@@ -219,7 +217,9 @@ docker run创建Docker容器时，--net选项指定容器网络模式，Docker�
 	esac
 </details>
 
-## Docker高阶 - 原理与机制 ##
+### Docker源码分析 ####
+
+## Docker原理与机制 ##
 - 系统调用
 - namespaces - *基于进程，为每个容器提供资源隔离*
 - cgroups - *基于cgroup文件系统，为每个容器提供资源配额*
@@ -357,8 +357,8 @@ IPC相关知识，请参考[Linux进程间通信](./Linux进程间通信.md)，*
 
 ## storge driver存储管理 ##
 
-## 工具部分 ##
-### docker三剑客 ###
+## 容器编排 ##
+### Docker三剑客 ###
 > docker三剑客包含docker machine、docker swarm、docker compose分别用于主机管理、集群管理、容器编排，为容器的分布式应用提供了简单解决方案。
 
 ![](doc/docker-tools.png)
