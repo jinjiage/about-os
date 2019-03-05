@@ -1,10 +1,20 @@
 # Linux容器技术 #
 Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依赖任何语言、框架或系统，可以将App变成一种标准化的、可移植的、自管理的组件，并脱离服务器硬件在任何主流系统中开发、调试和运行。
 
-## Docker架构
+## 图解Docker
+
+<details><summary>docker架构图</summary>
+
 ![](doc/docker.jpg)
 
+</details>
+
+<details><summary>docker思维导图</summary>
+
 ![](doc/有关docker.png)
+
+</details>
+
 
 ## Docker入门 - 基本命令与使用 ##
 
@@ -18,36 +28,40 @@ docker环境信息|info、version
 容器资源管理|volume、network
 系统日志信息|events、history、logs
 
-- info
+  <details><summary>info</summary>
 
 	![](doc/docker-info.png)
 
-- run
+</details>
 
-	![](doc/ifconfig.png)
-	![](doc/iwconfig.png)
+<details><summary>run</summary>
 
-	docker run创建Docker容器时，--net选项指定容器网络模式，Docker有以下4种网络模式：
+![](doc/ifconfig.png)
 
-	- host模式，使用--net=host与主机相同，不创建独立的Network命名空间（网卡、路由、iptable规则等）；
-	
-	  ![](doc/docker-host.png)
-	
-	- container模式，使用--net=container:NAME_or_ID，加入到指定容器使用的Network命名空间；
-	
-	  ![](doc/docker-container.png)
-	
-	- none模式，使用--net=none，不设置网络；
-	
-	  ![](doc/docker-none.png)
-	
-	- bridge模式，使用--net=bridge为默认模式，创建独立的Network命名空间，通过veth pair、网桥互联；
-	    
-	   ![](doc/docker-bridge.png)
-	
-	* 虚拟网卡veth、网桥等网络设备原理与实现，请参考*[Linux网络管理](./Linux网络管理.md)
+![](doc/iwconfig.png)
 
-- pull / push
+docker run创建Docker容器时，--net选项指定容器网络模式，Docker有以下4种网络模式：
+
+- host模式，使用--net=host与主机相同，不创建独立的Network命名空间（网卡、路由、iptable规则等）；
+
+	![](doc/docker-host.png)
+
+- container模式，使用--net=container:NAME_or_ID，加入到指定容器使用的Network命名空间；
+
+	![](doc/docker-container.png)
+
+- none模式，使用--net=none，不设置网络；
+
+	![](doc/docker-none.png)
+
+- bridge模式，使用--net=bridge为默认模式，创建独立的Network命名空间，通过veth pair、网桥互联；
+	
+	![](doc/docker-bridge.png)
+
+* 虚拟网卡veth、网桥等网络设备原理与实现，请参考*[Linux网络管理](./Linux网络管理.md)
+</details>
+
+<details><summary>pull / push</summary>
 
 		docker pull [选项] [Docker Registry地址]<仓库名>:<标签>
 		                                   |              |        |
@@ -55,7 +69,9 @@ docker环境信息|info、version
 		                                                  |        
 		                 <用户名>/<软件名>,不指定用户名，默认为官网的library(例如ubuntu，实际指向library/ubuntu)
 		
-	![](doc/docker-pull.png)
+![](doc/docker-pull.png)
+
+</details>
 
 ## Docker进阶 - Docker源码分析 ##
 
@@ -65,6 +81,8 @@ docker环境信息|info、version
 	
 *100行左右实现docker基本功能，通过分析Bocker，我想说明容器是多种新老技术的综合运用*
 
+<details><summary>源码分析</summary>
+	
 	#!/usr/bin/env bash
 	set -o errexit -o nounset -o pipefail; shopt -s nullglob
 	btrfs_path='/var/bocker' && cgroups='cpu,cpuacct,memory';
@@ -199,6 +217,7 @@ docker环境信息|info、version
 		pull|init|rm|images|ps|run|exec|logs|commit) bocker_"$1" "${@:2}" ;;
 		*) bocker_help "$0" ;;
 	esac
+</details>
 
 ## Docker高阶 - 原理与机制 ##
 - 系统调用
@@ -212,9 +231,9 @@ docker环境信息|info、version
 
     ![](doc/do_fork.png)
 
-1. unshare() - 当前进程，创建并加入新的namwspace
-1. setns() - 当前进程加入已有namespace
-2. mount() - mount过程比较复杂且涉及文件系统的知识，这里不再累赘，详细内容请参考[Linux文件系统](Linux文件系统.md)
+2. unshare() - 当前进程，创建并加入新的namwspace
+3. setns() - 当前进程加入已有namespace
+4. mount() - mount过程比较复杂且涉及文件系统的知识，这里不再累赘，详细内容请参考[Linux文件系统](Linux文件系统.md)
 
 ### namespaces命名空间 - 进程所看到的视图 ###
 ![](doc/proc_ns.png)
