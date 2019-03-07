@@ -217,7 +217,7 @@ docker run创建Docker容器时，--net选项指定容器网络模式，Docker�
 	esac
 </details>
 
-### Docker源码分析 ####
+### Docker源码分析 ###
 
 ## Docker原理与机制 ##
 - 系统调用
@@ -377,11 +377,28 @@ IPC相关知识，请参考[Linux进程间通信](./Linux进程间通信.md)，*
 > docker swarm通过把多个docker engine聚集在一起，形成一个大的docker engine，对外提供容器的集群服务，同时这个集群对外提供swarm API，用户可以像使用docker engine一样使用docker集群。
 
 #### docker compose - [Doc](https://docs.docker.com/compose/overview/)、 [Github](https://github.com/docker/compose) ####
-### 其他工具 ###
+
+## lxc原生容器 ##
+
+<details><summary>虚拟化技术对比</summary>
+
+![](doc/虚拟化对比.png)
+
+</details>
+
+<details><summary>centos安装lxc</summary>
+
+	yum -y install lxc lxc-templates bridge-utils lxc-libs libcgroup libvirt
+	systemctl start libvirtd
+	brctl show
+	
+</details>
+
+## 其他工具 ##
 1. unshare
-1. nsenter
-1. hostname - uts工具
-1. ipcmk - ipc工具，用于创建共享内存、消息队列、信号量ipc资源
-1. ipcs - ipc工具，与ipcmk配套用于查询ipc资源
-1. iproute2工具
-1. mininet
+2. nsenter
+3. hostname - uts工具
+4. ipcmk - ipc工具，用于创建共享内存、消息队列、信号量ipc资源
+5. ipcs - ipc工具，与ipcmk配套用于查询ipc资源
+6. iproute2工具
+7. mininet
