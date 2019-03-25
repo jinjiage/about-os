@@ -391,7 +391,9 @@ IPC相关知识，请参考[Linux进程间通信](./Linux进程间通信.md)，*
 	yum -y install lxc lxc-templates bridge-utils lxc-libs libcgroup libvirt
 	systemctl start libvirtd
 	brctl show
-	
+	'/var/lib/lxc/u2/tmp_root_pass'
+	chroot /var/lib/lxc/u2/rootfs passwd
+
 </details>
 
 ## 其他工具 ##

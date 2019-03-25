@@ -43,6 +43,10 @@
 	- yum repolist
 		
 		显示所有源/仓库列表，实际存放在/etc/yum.repos.d/目录中
+
+	- 查看指定仓库的软件包
+
+		yum --disablerepo="*" --enablerepo="elrepo-kernel" list available #屏蔽所有的仓库，只显示elrepo-kernel
 	
 	- 安装epel第三方源
 	
@@ -53,7 +57,7 @@
 		CentOs 7.X，rpm -Uvh https://mirror.webtatic.com/yum/el7/epel-release.rpm;
 					rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
 	
-	- 更新源，使用阿里云源替换CentOS-Base.repo
+	- 手工替换，阿里云源替换CentOS-Base.repo
 		
 		mv CentOS-Base.repo CentOS-Base.repo.old
 		wget http://mirrors.aliyun.com/repo/Centos-7.repo
