@@ -1,39 +1,66 @@
 # 有关Linux
 *-----Linux学习笔记*
 
-## 一、有关Linux内核
-
+## 一、有关Linux内核原理及思维导图
+- <details><summary>linux kernel map</summary>
 ![linux kernel map](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Linux_kernel_map.png/800px-Linux_kernel_map.png)
+</details>
+
+- <details><summary>linux storage stack diagram</summary>
 ![linux storage stack diagram](https://upload.wikimedia.org/wikipedia/commons/3/30/IO_stack_of_the_Linux_kernel.svg)
+</details>
+
+- <details><summary>linux perf tools</summary>
 ![linux perf tools](http://www.brendangregg.com/Perf/linux_perf_tools_full.png)
+</details>
+
+- <details><summary>linux observability tools</summary>
 ![linux observability tools](http://www.brendangregg.com/Perf/linux_observability_tools.png)
+</details>
+
+- <details><summary>linux static tools</summary>
 ![linux static tools](http://www.brendangregg.com/Perf/linux_static_tools.png)
+</details>
+
+- <details><summary>linux benchmarking tools</summary>
 ![linux benchmarking tools](http://www.brendangregg.com/Perf/linux_benchmarking_tools.png)
+</details>
+
+- <details><summary>linux observability sar</summary>
 ![linux observability sar](http://www.brendangregg.com/Perf/linux_observability_sar.png)
+</details>
+
+- <details><summary>perf tools</summary>
 ![perf tools](http://www.brendangregg.com/Perf/perf-tools_2016.png)
+</details>
+
+- <details><summary>bcc tracing tools</summary>
 ![bcc tracing tools](http://www.brendangregg.com/Perf/bcc_tracing_tools.png)
+</details>
+
+- <details><summary>protocols</summary>
 ![](doc/protocols.png)
+</details>
 
----
+### 个人学习笔记
 
-[Linux引导过程](./Linux引导过程.md)、[Linux进程管理](./Linux进程管理.md)、[Linux内存管理](./Linux内存管理.md)、[Linux文件系统](./Linux文件系统.md)、[Linux网络管理](./Linux网络管理.md)、[Linux设备管理](./Linux设备管理.md)、[Linux虚拟化技术](./Linux虚拟化技术.md)、[Linux容器技术](./Linux容器技术.md)、[Linux调试及跟踪](./Linux工具集.md)、[有关Qemu](./有关Qemu.md)
+1. [Linux引导过程](./Linux引导过程.md)
+2. [Linux进程管理](./Linux进程管理.md)
+3. [Linux内存管理](./Linux内存管理.md)
+4. [Linux文件系统](./Linux文件系统.md)
+5. [Linux网络管理](./Linux网络管理.md)
+6. [Linux设备管理](./Linux设备管理.md)
+7. [Linux虚拟化技术](./Linux虚拟化技术.md)
+8. [Linux容器及编排技术](./Linux容器及编技术.md)
+9. [Linux调试及跟踪](./Linux工具集.md)
+10. [有关Qemu](./有关Qemu.md)
+11. [Linux软件包管理](./Linux软件包管理.md)
+12. [Linux Shell编程](./Linux—Shell编程.md)
+13. [Linux模块编程](./Linux模块编程.md)
+14. [版本控制 - yejinlei/about-git](https://github.com/yejinlei/about-git)
+15. [编译器技术 - yejinlei/about-compiler](https://github.com/yejinlei/about-compiler)
+16. [vim配置 - yejinlei/vimplusplus](https://github.com/yejinlei/vimplusplus)
 
----
-
-## 二、有关Linux编程
-
----
-
-[Linux Shell编程](./Linux—Shell编程.md)、[Linux模块编程](./Linux模块编程.md)、[版本控制 - yejinlei/about-git](https://github.com/yejinlei/about-git)、[编译器技术 - yejinlei/about-compiler](https://github.com/yejinlei/about-compiler)、[vim配置 - yejinlei/vimplusplus](https://github.com/yejinlei/vimplusplus)
-
----
-
-## 三、有关Linux运维
-
----
-
-[Linux软件包管理](./Linux软件包管理.md)
-	
 ---
 
 ###shell内置命令
