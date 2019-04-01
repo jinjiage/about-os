@@ -3,43 +3,63 @@
 
 ## 一、有关Linux内核原理及思维导图
 - <details><summary>linux kernel map</summary>
-	![linux kernel map](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Linux_kernel_map.png/800px-Linux_kernel_map.png)
+
+![linux kernel map](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Linux_kernel_map.png/800px-Linux_kernel_map.png)
+
 </details>
 
 - <details><summary>linux storage stack diagram</summary>
-	![linux storage stack diagram](https://upload.wikimedia.org/wikipedia/commons/3/30/IO_stack_of_the_Linux_kernel.svg)
+
+![linux storage stack diagram](https://upload.wikimedia.org/wikipedia/commons/3/30/IO_stack_of_the_Linux_kernel.svg)
+
 </details>
 
 - <details><summary>linux perf tools</summary>
-	![linux perf tools](http://www.brendangregg.com/Perf/linux_perf_tools_full.png)
+
+![linux perf tools](http://www.brendangregg.com/Perf/linux_perf_tools_full.png)
+
 </details>
 
 - <details><summary>linux observability tools</summary>
-	![linux observability tools](http://www.brendangregg.com/Perf/linux_observability_tools.png)
+
+![linux observability tools](http://www.brendangregg.com/Perf/linux_observability_tools.png)
+
 </details>
 
 - <details><summary>linux static tools</summary>
-	![linux static tools](http://www.brendangregg.com/Perf/linux_static_tools.png)
+
+![linux static tools](http://www.brendangregg.com/Perf/linux_static_tools.png)
+
 </details>
 
 - <details><summary>linux benchmarking tools</summary>
-	![linux benchmarking tools](http://www.brendangregg.com/Perf/linux_benchmarking_tools.png)
+
+![linux benchmarking tools](http://www.brendangregg.com/Perf/linux_benchmarking_tools.png)
+
 </details>
 
 - <details><summary>linux observability sar</summary>
-	![linux observability sar](http://www.brendangregg.com/Perf/linux_observability_sar.png)
+
+![linux observability sar](http://www.brendangregg.com/Perf/linux_observability_sar.png)
+
 </details>
 
 - <details><summary>perf tools</summary>
-	![perf tools](http://www.brendangregg.com/Perf/perf-tools_2016.png)
+
+![perf tools](http://www.brendangregg.com/Perf/perf-tools_2016.png)
+
 </details>
 
 - <details><summary>bcc tracing tools</summary>
-	![bcc tracing tools](http://www.brendangregg.com/Perf/bcc_tracing_tools.png)
+
+![bcc tracing tools](http://www.brendangregg.com/Perf/bcc_tracing_tools.png)
+
 </details>
 
 - <details><summary>protocols</summary>
-	![](doc/protocols.png)
+
+![](doc/protocols.png)
+
 </details>
 
 ### 个人学习笔记
