@@ -2,19 +2,20 @@
 *-----Linux学习笔记*
 
 ## 一、有关Linux内核原理及思维导图
-- <details><summary>linux kernel map</summary>
+
+<details><summary>linux kernel map</summary>
 
 ![linux kernel map](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Linux_kernel_map.png/800px-Linux_kernel_map.png)
 
 </details>
 
-- <details><summary>linux storage stack diagram</summary>
+<details><summary>linux storage stack diagram</summary>
 
 ![linux storage stack diagram](https://upload.wikimedia.org/wikipedia/commons/3/30/IO_stack_of_the_Linux_kernel.svg)
 
 </details>
 
-- <details><summary>linux perf tools</summary>
+<details><summary>linux perf tools</summary>
 
 ![linux perf tools](http://www.brendangregg.com/Perf/linux_perf_tools_full.png)
 
