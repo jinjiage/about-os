@@ -20,43 +20,43 @@
 
 </details>
 
-- <details><summary>linux observability tools</summary>
+<details><summary>linux observability tools</summary>
 
 ![linux observability tools](http://www.brendangregg.com/Perf/linux_observability_tools.png)
 
 </details>
 
-- <details><summary>linux static tools</summary>
+<details><summary>linux static tools</summary>
 
 ![linux static tools](http://www.brendangregg.com/Perf/linux_static_tools.png)
 
 </details>
 
-- <details><summary>linux benchmarking tools</summary>
+<details><summary>linux benchmarking tools</summary>
 
 ![linux benchmarking tools](http://www.brendangregg.com/Perf/linux_benchmarking_tools.png)
 
 </details>
 
-- <details><summary>linux observability sar</summary>
+<details><summary>linux observability sar</summary>
 
 ![linux observability sar](http://www.brendangregg.com/Perf/linux_observability_sar.png)
 
 </details>
 
-- <details><summary>perf tools</summary>
+<details><summary>perf tools</summary>
 
 ![perf tools](http://www.brendangregg.com/Perf/perf-tools_2016.png)
 
 </details>
 
-- <details><summary>bcc tracing tools</summary>
+<details><summary>bcc tracing tools</summary>
 
 ![bcc tracing tools](http://www.brendangregg.com/Perf/bcc_tracing_tools.png)
 
 </details>
 
-- <details><summary>protocols</summary>
+<details><summary>protocols</summary>
 
 ![](doc/protocols.png)
 
