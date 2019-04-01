@@ -1,6 +1,8 @@
 # Linux容器技术 #
 Docker是虚拟化的一种轻量级替代技术。Docker的容器技术不依赖任何语言、框架或系统，可以将App变成一种标准化的、可移植的、自管理的组件，并脱离服务器硬件在任何主流系统中开发、调试和运行。
 
+![](doc/docker.png)
+
 ## 图解Docker
 
 <details><summary>Docker架构图</summary>
@@ -404,3 +406,9 @@ IPC相关知识，请参考[Linux进程间通信](./Linux进程间通信.md)，*
 5. ipcs - ipc工具，与ipcmk配套用于查询ipc资源
 6. iproute2工具
 7. mininet
+
+## 资料汇总
+1. [Container (virtualization) from Wikipedia, the free encyclopedia](https://en.wikipedia.org/wiki/Container_(virtualization))
+2. [Docker from 百度百科](https://baike.baidu.com/item/Docker/13344470?fr=aladdin)
+3. [简述KVM架构和Xen架构](https://www.cnblogs.com/Timesi/p/9565456.html)
+4. [学习 KVM 的系列文章](http://www.cnblogs.com/sammyliu/p/4543110.html)
